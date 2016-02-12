@@ -18,9 +18,15 @@ OI& Main::getOI()
 	return getRobot().m_oi;
 }
 
+ArcadeDrive& Main::getDrive()
+{
+	return getRobot().m_drive;
+}
+
 void Main::RobotInit()
 {
 	m_oi.init();
+	m_drive.init();
 
 //	autocmd = new Auto();
 	lw = LiveWindow::GetInstance();

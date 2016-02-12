@@ -2,6 +2,7 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "OI.h"
+#include "Subsystems/ArcadeDrive.h"
 
 class Main : public IterativeRobot
 {
@@ -11,12 +12,14 @@ class Main : public IterativeRobot
 
 		static Main& 				getRobot();
 		static OI& 					getOI();
+		static ArcadeDrive&			getDrive();
 
 
 	private:
 		LiveWindow 		   *lw;
 	//	Command*           autocmd;
 		OI				   m_oi;
+		ArcadeDrive		   m_drive;
 
 		virtual void RobotInit();
 		virtual void AutonomousInit();
