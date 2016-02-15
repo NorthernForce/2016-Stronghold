@@ -3,6 +3,7 @@
 #include "Commands/Command.h"
 #include "OI.h"
 #include "Subsystems/ArcadeDrive.h"
+#include "Auto.h"
 
 class Main : public IterativeRobot
 {
@@ -17,7 +18,7 @@ class Main : public IterativeRobot
 
 	private:
 		LiveWindow 		   *lw;
-	//	Command*           autocmd;
+		Command*           autocmd;
 		OI				   m_oi;
 		ArcadeDrive		   m_drive;
 

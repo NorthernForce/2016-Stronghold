@@ -1,11 +1,11 @@
 #include "Main.h"
 
-Main::Main() : lw(0)//, autocmd()
+Main::Main() : lw(0), autocmd()
 {}
 
 Main::~Main()
 {
-//	delete autocmd;
+	delete autocmd;
 }
 
 Main& Main::getRobot()
@@ -28,13 +28,13 @@ void Main::RobotInit()
 	m_oi.init();
 	m_drive.init();
 
-//	autocmd = new Auto();
+	autocmd = new Auto();
 	lw = LiveWindow::GetInstance();
 }
 
 void Main::AutonomousInit()
 {
-//	autocmd->Start();
+	autocmd->Start();
 }
 
 void Main::AutonomousPeriodic()

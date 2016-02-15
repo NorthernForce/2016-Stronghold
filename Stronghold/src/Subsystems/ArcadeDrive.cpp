@@ -8,9 +8,9 @@ ArcadeDrive::ArcadeDrive() :
 		m_frontRight(kFrontRightTalon),
 		m_backLeft(kBackLeftTalon),
 		m_backRight(kBackRightTalon),
-		P(0),
-		I(0),
-		D(0)
+		P(0.50),
+		I(0.02),
+		D(0.00)
 {
 	m_drive.SetSafetyEnabled(false);
 }
