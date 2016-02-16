@@ -12,7 +12,7 @@ ArcadeDrive::ArcadeDrive() :
 		I(0.02),
 		D(0.00)
 {
-	m_drive.SetSafetyEnabled(false);
+	m_drive.SetSafetyEnabled(true);
 }
 
 void ArcadeDrive::InitDefaultCommand()
@@ -28,8 +28,16 @@ void ArcadeDrive::DriveArcade(float x, float y, bool z)
 
 void ArcadeDrive::init()
 {
-	m_drive.SetSafetyEnabled(false);
-	m_drive.SetExpiration(0.2);
+	m_drive.SetSafetyEnabled(true);
+
+	m_drive.SetInvertedMotor(RobotDrive::kFrontLeftMotor, true);
+	m_drive.SetInvertedMotor(RobotDrive::kFrontRightMotor, false);
+	m_drive.SetInvertedMotor(RobotDrive::kRearLeftMotor,  true);
+	m_drive.SetInvertedMotor(RobotDrive::kRearRightMotor,  false);
+
+	m_drive.SetExpiration(0.1);
+
+	DisableEncoders();
 }
 
 
@@ -136,5 +144,6 @@ void ArcadeDrive::DisableEncoders()
 	m_frontRight.EnableControl();
 	m_backRight.EnableControl();
 }
+
 
 

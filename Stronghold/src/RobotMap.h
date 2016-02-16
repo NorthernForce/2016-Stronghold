@@ -46,13 +46,13 @@ enum Attack3JoystickPort
 
 enum TalonPWMAdress
 {
-	kFrontLeftTalon = 0, // Needs to be changed/confirmed
+	kFrontLeftTalon = 3, // Needs to be changed/confirmed
 	kFrontRightTalon = 1,
-	kBackLeftTalon = 2,
-	kBackRightTalon = 3,
+	kBackLeftTalon = 4,
+	kBackRightTalon = 2,
 
-	kIntakeRight = 8,
-	kIntakeLeft = 7,
+	kIntakeRight = 5,
+	kIntakeLeft = 6,
 
 };
 

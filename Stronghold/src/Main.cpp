@@ -43,7 +43,8 @@ void Main::AutonomousPeriodic()
 }
 
 void Main::TeleopInit()
-{}
+{
+}
 
 void Main::TeleopPeriodic()
 {

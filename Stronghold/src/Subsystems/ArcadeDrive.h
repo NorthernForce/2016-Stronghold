@@ -1,9 +1,9 @@
-#ifndef ArcadeDrive_H
-#define ArcadeDrive_H
+#pragma once
 
 #include "Subsystems/SubsystemWithCommand.hpp"
 #include "Commands/DriveWithJoystick.h"
 #include "WPILib.h"
+
 
 class ArcadeDrive: public SubsystemWithCommand<DriveWithJoystick>
 {
@@ -30,4 +30,3 @@ public:
 	void DisableEncoders();
 };
 
-#endif
