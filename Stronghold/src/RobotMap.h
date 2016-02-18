@@ -1,15 +1,12 @@
 #pragma once
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
+ * The RobotMap is a mapping from the ports for sensors and actuators
+ * to variable names. This provides flexibility with changing wiring, makes checking
+ * the wiring easier, and significantly reduces the number of magic numbers
  * floating around.
  */
 
-
-//Probably unnecessary
-static const int kBallDataPort = 1726;
 
 enum XBoxJoystickButtonPort
 {
@@ -44,15 +41,15 @@ enum Attack3JoystickPort
 	kAttackJoystickButton12 = 11,
 };
 
-enum TalonPWMAdress
+enum TalonAdress
 {
 	kFrontLeftTalon = 3, // Needs to be changed/confirmed
-	kFrontRightTalon = 1,
-	kBackLeftTalon = 4,
+	kFrontRightTalon = 4,
+	kBackLeftTalon = 1, //swapped 1 and 2
 	kBackRightTalon = 2,
 
-	kIntakeRight = 5,
-	kIntakeLeft = 6,
+	kWheelTalon = 5,
+	kAxleTalon = 6,
 
 };
 
@@ -64,43 +61,17 @@ enum JoystickPort
 	kXBoxManipulatorPort = 2,
 };
 
-enum RelayPort
+enum PID
 {
-	kCompressorModule = 1,
-	kCompressorRelay = 1,
-	kIntakeModule = 1,
-	kIntakeRelay = 2,
+	kP = 0,
+	kI = 0,
+	kD = 0,
 };
 
-enum DigitalIOPort
+enum EncoderChannels
 {
-	kCompressorSwitchModule = 1,
-	kCompressorSwitch = 1,
-
-	//Probably unnecessary
-	k_targetingUltrasonicSerialMode = 3,
-	k_targetingUltrasonicOn = 2,
-};
-
-enum AnalogIOPort
-{
-	//Probably unnecessary
-	//k_MaxbotixUltrasonic = 1,
-	k_targetingUltrasonic = 2,
-	k_pressureChannel = 3,
-};
-
-enum SolenoidPort
-{
-	kSolenoidPort1 = 1,
-	kSolenoidPort2 = 2,
-	kSolenoidPort3 = 3,
-	kSolenoidPort4 = 4,
-	kSolenoidPort5 = 5,
-	kSolenoidPort6 = 6,
-	kSolenoidPort7 = 7,
-	kSolenoidPort0 = 0,
-
+	kChannelA = 0,
+	kChannelB = 1,
 };
 
 static const float kDeadbandLimit = 0.01;

@@ -23,6 +23,16 @@ ArcadeDrive& Main::getDrive()
 	return getRobot().m_drive;
 }
 
+Intake& Main::getIntake()
+{
+	return getRobot().m_intake;
+}
+
+Shooter& Main::getShooter()
+{
+	return getRobot().m_shooter;
+}
+
 void Main::RobotInit()
 {
 	m_oi.init();
@@ -30,6 +40,7 @@ void Main::RobotInit()
 
 	autocmd = new Auto();
 	lw = LiveWindow::GetInstance();
+
 }
 
 void Main::AutonomousInit()

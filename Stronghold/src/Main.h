@@ -1,9 +1,12 @@
 #pragma once
+
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "OI.h"
 #include "Subsystems/ArcadeDrive.h"
-#include "Auto.h"
+#include "Subsystems/Intake.h"
+#include "Subsystems/Shooter.h"
+#include "Commands/Auto.h"
 
 class Main : public IterativeRobot
 {
@@ -14,6 +17,8 @@ class Main : public IterativeRobot
 		static Main& 				getRobot();
 		static OI& 					getOI();
 		static ArcadeDrive&			getDrive();
+		static Intake&				getIntake();
+		static Shooter&				getShooter();
 
 
 	private:
@@ -21,6 +26,8 @@ class Main : public IterativeRobot
 		Command*           autocmd;
 		OI				   m_oi;
 		ArcadeDrive		   m_drive;
+		Intake			   m_intake;
+		Shooter			   m_shooter;
 
 		virtual void RobotInit();
 		virtual void AutonomousInit();

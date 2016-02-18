@@ -12,13 +12,12 @@ ArcadeDrive::ArcadeDrive() :
 		I(0.02),
 		D(0.00)
 {
-	m_drive.SetSafetyEnabled(true);
+	m_drive.SetSafetyEnabled(false);
 }
 
 void ArcadeDrive::InitDefaultCommand()
 {
-	// Set the default command for a subsystem here.
-	//SetDefaultCommand(new MySpecialCommand());
+	SetDefaultCommand(new DriveWithJoystick());
 }
 
 void ArcadeDrive::DriveArcade(float x, float y, bool z)
@@ -28,14 +27,22 @@ void ArcadeDrive::DriveArcade(float x, float y, bool z)
 
 void ArcadeDrive::init()
 {
-	m_drive.SetSafetyEnabled(true);
+	m_drive.SetSafetyEnabled(false);
+//	m_frontLeft.SetSafetyEnabled(true);
+//	m_backLeft.SetSafetyEnabled(true);
+//	m_frontRight.SetSafetyEnabled(true);
+//	m_backRight.SetSafetyEnabled(true);
 
-	m_drive.SetInvertedMotor(RobotDrive::kFrontLeftMotor, true);
+	m_drive.SetInvertedMotor(RobotDrive::kFrontLeftMotor, false); //were flipped
 	m_drive.SetInvertedMotor(RobotDrive::kFrontRightMotor, false);
-	m_drive.SetInvertedMotor(RobotDrive::kRearLeftMotor,  true);
+	m_drive.SetInvertedMotor(RobotDrive::kRearLeftMotor,  false);
 	m_drive.SetInvertedMotor(RobotDrive::kRearRightMotor,  false);
 
 	m_drive.SetExpiration(0.1);
+//	m_frontLeft.SetExpiration(0.5);
+//	m_backLeft.SetExpiration(0.5);
+//	m_frontRight.SetExpiration(0.5);
+//	m_backRight.SetExpiration(0.5);
 
 	DisableEncoders();
 }
@@ -123,9 +130,9 @@ void ArcadeDrive::DisableEncoders()
 {
 	// Motors have to be inverted for using encoders, so they have
 	// to be set back for kPercentVbus mode.
-	m_drive.SetInvertedMotor(RobotDrive::kFrontLeftMotor,   true);
+	m_drive.SetInvertedMotor(RobotDrive::kFrontLeftMotor,   false); //were flipped
 	m_drive.SetInvertedMotor(RobotDrive::kFrontRightMotor, false);
-	m_drive.SetInvertedMotor(RobotDrive::kRearLeftMotor,    true);
+	m_drive.SetInvertedMotor(RobotDrive::kRearLeftMotor,    false);
 	m_drive.SetInvertedMotor(RobotDrive::kRearRightMotor,  false);
 
 	// Output values for kPercentVbus mode are -1..1, so
@@ -140,9 +147,9 @@ void ArcadeDrive::DisableEncoders()
 
 	// Enable the talons
 	m_frontLeft.Enable();
-	m_backLeft.EnableControl();
-	m_frontRight.EnableControl();
-	m_backRight.EnableControl();
+	m_backLeft.Enable();
+	m_frontRight.Enable();
+	m_backRight.Enable();
 }
 
 
