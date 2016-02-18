@@ -1,4 +1,5 @@
 #include "OI.h"
+#include "Commands/SetDriveMode.hpp"
 
 
 OI::OI() :
@@ -8,7 +9,8 @@ OI::OI() :
 
 void OI::init()
 {
-	// Process operator interface input here.
+	m_DriverStick.RightBumper.WhenPressed<SetDriveMode<ENCODERS_ON> >();
+	m_DriverStick.LeftBumper.WhenPressed<SetDriveMode<ENCODERS_OFF> >();
 }
 
 FRCXboxJoystick& OI::GetDriverStick()
