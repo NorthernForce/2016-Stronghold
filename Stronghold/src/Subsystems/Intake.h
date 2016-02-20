@@ -20,5 +20,12 @@ class Intake: public SubsystemWithCommand<void>
 		void SetPID(float p, float i, float d);
 		void SetSetpoint(float point);
 		double GetEncoderValue();
+		void SetAxleForward();
+		void SetAxleBackward();
+		void SetAxleStopped();
+		void SetWheelForward();
+		void SetWheelBackward();
+		void SetWheelStopped();
+		void init();
 
 };

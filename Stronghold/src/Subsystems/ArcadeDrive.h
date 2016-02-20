@@ -28,5 +28,6 @@ class ArcadeDrive: public SubsystemWithCommand<DriveWithJoystick>
 		void init();
 		void EnableEncoders(bool invertGains = true);
 		void DisableEncoders();
+		void FlipDrive(bool flip);
 };
 

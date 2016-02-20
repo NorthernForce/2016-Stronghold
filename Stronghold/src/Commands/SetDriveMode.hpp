@@ -3,32 +3,63 @@
 #include "Commands/Command.h"
 #include "../Main.h"
 
-enum DriveMode
-{
-	ENCODERS_ON,
-	ENCODERS_OFF,
-};
+class DriveModeFlipped {};
 
-template<DriveMode mode>
+class DriveModeRegular {};
+
+template<class T>
 class SetDriveMode: public Command
 {
 	public:
-		SetDriveMode(){}
+		SetDriveMode() :
+			m_finished(false)
+		{}
+
 		virtual void Initialize()
 		{
-			switch(mode)
-			{
-			case ENCODERS_ON:
-				Main::getDrive().EnableEncoders(true);
-				break;
-			case ENCODERS_OFF:
-				Main::getDrive().DisableEncoders();
-				break;
-			}
+			m_finished = false;
 		}
 
-		virtual void Execute() {}
-		virtual bool IsFinished() { return true; }
+		virtual void Execute()
+		{
+			//std::cout << "Mode: " << mode << std::endl;
+
+			specificExecute(T());
+			/*
+			switch(mode)
+			{
+				case R:
+					Main::getDrive().FlipDrive(false);
+					std::cout << "Set to regular." << std::endl;
+					m_finished = true;
+					break;
+				case FLIPPED:
+					Main::getDrive().FlipDrive(true);
+					std::cout << "Set to flipped." << std::endl;
+					m_finished = true;
+					break;
+			}
+			*/
+		}
+
+		void specificExecute(const DriveModeRegular& mode)
+		{
+			Main::getDrive().FlipDrive(false);
+			std::cout << "Set to regular." << std::endl;
+			m_finished = true;
+		}
+
+		void specificExecute(const DriveModeFlipped& mode)
+		{
+			Main::getDrive().FlipDrive(true);
+			std::cout << "Set to flipped." << std::endl;
+			m_finished = true;
+		}
+
+		virtual bool IsFinished() { return m_finished; }
 		virtual void End() {}
 		virtual void Interrupted() {}
+
+	private:
+		bool m_finished;
 };

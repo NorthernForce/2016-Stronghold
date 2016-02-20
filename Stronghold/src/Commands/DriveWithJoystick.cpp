@@ -15,7 +15,7 @@ void DriveWithJoystick::Initialize()
 void DriveWithJoystick::Execute()
 {
 	float x = Main::getOI().GetDriverStick().GetLeftStickY();
-	float y = Main::getOI().GetDriverStick().GetLeftStickX();
+	float y = Main::getOI().GetDriverStick().GetRightStickX();
 	bool z = true;
 
 	Main::getDrive().DriveArcade(x, y, z);

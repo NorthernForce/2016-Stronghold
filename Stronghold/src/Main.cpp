@@ -37,6 +37,8 @@ void Main::RobotInit()
 {
 	m_oi.init();
 	m_drive.init();
+	m_intake.init();
+	m_shooter.init();
 
 	autocmd = new Auto();
 	lw = LiveWindow::GetInstance();

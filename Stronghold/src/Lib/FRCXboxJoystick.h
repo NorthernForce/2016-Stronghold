@@ -32,6 +32,7 @@ class FRCXboxJoystick: public Joystick
 		  Deadband(other.Deadband),
 		  m_port(other.m_port)
 		{}
+
 		virtual ~FRCXboxJoystick() {}
 
 		float GetLeftStickY();
