@@ -2,6 +2,7 @@
 #include "Commands/SetDriveMode.hpp"
 #include "Commands/SetIntakeMode.hpp"
 #include "Commands/SetAxlePosition.hpp"
+#include "Commands/SetAxleMotion.hpp"
 #include "Commands/SetShooterMode.hpp"
 
 
@@ -18,11 +19,15 @@ void OI::init()
 	m_ManipulatorStick.Button2.WhenPressed<SetIntakeMode<IntakeForward> >();
 	m_ManipulatorStick.Button3.WhenPressed<SetIntakeMode<IntakeBackward> >();
 	m_ManipulatorStick.Button4.WhenPressed<SetIntakeMode<IntakeStopped> >();
-	m_ManipulatorStick.Button5.WhenPressed<SetAxlePosition<MOVEFORWARD> >();
-	m_ManipulatorStick.Button6.WhenPressed<SetAxlePosition<MOVESTOPPED> >();
-	m_ManipulatorStick.Button7.WhenPressed<SetAxlePosition<MOVEBACKWARD> >();
-	m_ManipulatorStick.Button8.WhenPressed<SetShooterMode<ON> >();
-	//m_ManipulatorStick.Button9.WhenPressed<SetShooterMode<OFF> >();
+	m_ManipulatorStick.Button5.WhenPressed<SetAxleMotion<AxleMoveForward> >();
+	m_ManipulatorStick.Button6.WhenPressed<SetAxleMotion<AxleMoveBackward> >();
+	m_ManipulatorStick.Button7.WhenPressed<SetAxleMotion<AxleMoveStopped> >();
+	m_ManipulatorStick.Button8.WhenPressed<SetAxlePosition<IntakePosition> >();
+	m_ManipulatorStick.Button9.WhenPressed<SetAxlePosition<PortcullisUpPosition> >();
+	m_ManipulatorStick.Button10.WhenPressed<SetAxlePosition<HoldPosition> >();
+
+	m_ManipulatorStick.Trigger.WhenPressed<SetShooterMode<ShooterOn> >();
+	m_ManipulatorStick.Button11.WhenPressed<SetShooterMode<ShooterOff> >();
 }
 
 FRCXboxJoystick& OI::GetDriverStick()

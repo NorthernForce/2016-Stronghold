@@ -1,14 +1,29 @@
 #include "Intake.h"
 
 Intake::Intake() :
-	SubsystemWithCommand<void>("Intake"),
+	PIDSubsystem("Intake", 1.0, 0.0, 0.0),
 	m_axleTalon(kAxleTalon),
 	m_wheelTalon(kWheelTalon),
-	m_axleEnc(kChannelA, kChannelB, false, CounterBase::k4X),
-	m_pidLoop(kP, kI, kD, &m_axleEnc, &m_axleTalon)
-{}
+	m_axleEnc(kChannelA, 1.0, 0.0)
+//	m_pidLoop(kP, kI, kD, &m_axleEnc, &m_axleTalon)
+	//m_degrees(0.0)
+{
+	GetPIDController()->SetContinuous(false);
+	SetAbsoluteTolerance(2.0);
+	SetSetpoint(DefaultPosition::kValue);
+	Enable();
+}
 
+double Intake::ReturnPIDInput()
+{
+	return m_axleEnc.Get();
+}
 
+void Intake::UsePIDOutput(double output)
+{
+	m_axleTalon.PIDWrite(output);
+}
+/*
 float Intake::GetPID()
 {
 	return m_pidLoop.Get();
@@ -28,6 +43,11 @@ double Intake::GetEncoderValue()
 {
 	return m_axleEnc.Get();
 }
+*/
+//float Intake::ConvertToDegrees(float voltage)
+//{
+//	return m_degrees;
+//}
 
 void Intake::SetAxleForward()
 {
@@ -41,29 +61,35 @@ void Intake::SetAxleBackward()
 
 void Intake::SetAxleStopped()
 {
-	m_axleTalon.Set(0,0);
+	m_axleTalon.Set(0.0, 0);
 }
 
 void Intake::SetWheelForward()
 {
-	m_wheelTalon.SetSpeed(0.5);
+	m_wheelTalon.Set(1.0, 0);
 }
 
 void Intake::SetWheelBackward()
 {
-	m_wheelTalon.SetSpeed(-0.5);
+	m_wheelTalon.Set(-1.0, 0);
 }
 
 void Intake::SetWheelStopped()
 {
-	m_wheelTalon.SetSpeed(0.0);
+	m_wheelTalon.Set(0.0, 0);
+
+	// StopMotor() was causing issues...
+
 	//m_wheelTalon.Disable();
-	m_wheelTalon.StopMotor();
+	//m_wheelTalon.StopMotor();
 }
 
 void Intake::init()
 {
-	m_wheelTalon.SetSpeed(0.0);
+	m_wheelTalon.Set(0.0, 0);
+	m_axleTalon.Set(0.0, 0);
+
+	//m_wheelTalon.SetSpeed(0.0);
 	//m_axleTalon.StopMotor();
 	//m_wheelTalon.Disable();
 	//m_wheelTalon.EnableDeadbandElimination(true);

@@ -62,6 +62,8 @@ void Main::TeleopInit()
 void Main::TeleopPeriodic()
 {
 	Scheduler::GetInstance()->Run();
+	double voltage = getShooter().GetVoltage();
+	SmartDashboard::PutNumber("Voltage", voltage);
 }
 
 void Main::TestPeriodic()

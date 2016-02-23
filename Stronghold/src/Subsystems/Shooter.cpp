@@ -19,3 +19,8 @@ void Shooter::init()
 {
 	Stopped();
 }
+
+float Shooter::GetVoltage()
+{
+	return m_shooterTalon.GetBusVoltage();
+}

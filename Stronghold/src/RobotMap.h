@@ -49,8 +49,8 @@ enum TalonAdress
 	kBackRightTalon = 2,
 
 	kWheelTalon = 8,
-	kShooterTalon = 6,
-	kAxleTalon = 5,
+	kShooterTalon = 0,
+	kAxleTalon = 6,
 
 };
 
@@ -62,18 +62,37 @@ enum JoystickPort
 	kXBoxManipulatorPort = 2,
 };
 
-enum PID
+struct DefaultPosition
 {
-	kP = 0,
-	kI = 0,
-	kD = 0,
+	static constexpr float kValue = 0.0;
 };
 
-enum EncoderChannels
+struct IntakePosition
 {
-	kChannelA = 0,
-	kChannelB = 1,
+	static constexpr float kValue = 0.3;
 };
+
+struct PortcullisUpPosition
+{
+	static constexpr float kValue = 0.09;
+};
+
+struct HoldPosition
+{
+	static constexpr float kValue = 0.857;
+};
+
+struct PushPosition
+{
+	static constexpr float kValue = 0.637;
+};
+
+
+static const float	kP = 0.2;
+static const float	kI = 0;
+static const float	kD = 0;
+
+static const int kChannelA = 0;
 
 static const float kDeadbandLimit = 0.01;
 static const float kMaxDriveVoltage = 12.0;

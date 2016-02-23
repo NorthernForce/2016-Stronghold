@@ -3,48 +3,42 @@
 #include "Commands/Command.h"
 #include "../Main.h"
 
-enum AxlePosition
-{
-	FEED,
-	PUSH,
-	HOLD,
-	MOVEFORWARD,
-	MOVEBACKWARD,
-	MOVESTOPPED,
-};
 
-template<AxlePosition mode>
+template<typename T>
 class SetAxlePosition: public Command
 {
 	public:
-		SetAxlePosition(){}
-		virtual void Initialize(){}
-		virtual void Execute()
+		SetAxlePosition() :
+			m_finished(false)
 		{
-			switch(mode)
-			{
-			case FEED:
-				Main::getIntake().SetSetpoint(1);
-				break;
-			case PUSH:
-				Main::getIntake().SetSetpoint(2);
-				break;
-			case HOLD:
-				Main::getIntake().SetSetpoint(3);
-				break;
-			case MOVEFORWARD:
-				Main::getIntake().SetAxleForward();
-				break;
-			case MOVEBACKWARD:
-				Main::getIntake().SetAxleBackward();
-				break;
-			case MOVESTOPPED:
-				Main::getIntake().SetAxleStopped();
-				break;
-			}
+			Requires(&Main::getIntake());
+		}
+		virtual void Initialize()
+		{
+			Main::getIntake().Enable();
+			Main::getIntake().SetSetpoint(T::kValue);
+			m_finished = false;
 		}
 
-		virtual bool IsFinished() { return false; }
-		virtual void End() {}
-		virtual void Interrupted() {}
+		virtual void Execute()
+		{
+			Wait(2.0);
+			m_finished = true;
+		}
+
+
+
+		virtual bool IsFinished() { return m_finished; }
+		virtual void End()
+		{
+			Main::getIntake().Disable();
+		}
+
+		virtual void Interrupted()
+		{
+			Main::getIntake().Disable();
+		}
+
+	private:
+		bool  m_finished;
 };

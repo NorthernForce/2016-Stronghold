@@ -15,7 +15,10 @@ class SetIntakeMode: public Command
 	public:
 		SetIntakeMode():
 			m_finished(false)
-		{}
+		{
+			Requires(&Main::getIntake());
+		}
+
 		virtual void Initialize()
 		{
 			m_finished = false;

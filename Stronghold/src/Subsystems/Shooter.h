@@ -8,11 +8,12 @@
 class Shooter: public SubsystemWithCommand<void>
 {
 	private:
-		Talon 	m_shooterTalon;
+		CANTalon 	m_shooterTalon;
 
 	public:
 		Shooter();
 		void Forward();
 		void Stopped();
 		void init();
+		float GetVoltage();
 };
