@@ -22,8 +22,8 @@ class SetAxlePosition: public Command
 
 		virtual void Execute()
 		{
-			Wait(2.0);
-			m_finished = true;
+			m_finished = Main::getIntake().OnTarget();
+
 		}
 
 

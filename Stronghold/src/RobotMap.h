@@ -10,7 +10,8 @@
 
 enum XBoxJoystickButtonPort
 {
-	// New mappings starting in 2015
+	// Apparently, the buttons are one-based after all...
+
 	kXBoxButtonA = 1,
 	kXBoxButtonB = 2,
 	kXBoxButtonX = 3,

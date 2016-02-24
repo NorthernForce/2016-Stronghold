@@ -7,7 +7,7 @@ Shooter::Shooter() :
 
 void Shooter::Forward()
 {
-	m_shooterTalon.Set(0.5, 0);
+	m_shooterTalon.Set(1.0, 0);
 }
 
 void Shooter::Stopped()
