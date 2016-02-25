@@ -24,3 +24,21 @@ float Shooter::GetVoltage()
 {
 	return m_shooterTalon.GetBusVoltage();
 }
+
+double Shooter::GetSpeed()
+{
+	return m_shooterTalon.GetSpeed();
+}
+
+bool Shooter::IsShooterReady()
+{
+	if (GetSpeed() > 1)
+	{
+		return true;
+	}
+
+	else
+	{
+		return false;
+	}
+}

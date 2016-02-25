@@ -4,6 +4,8 @@
 #include "Commands/SetAxlePosition.hpp"
 #include "Commands/SetAxleMotion.hpp"
 #include "Commands/SetShooterMode.hpp"
+#include "Commands/IntakeBall.hpp"
+#include "Commands/ShootBall.hpp"
 
 
 OI::OI() :
@@ -23,6 +25,7 @@ void OI::init()
 	m_ManipulatorStick.Button5.WhenPressed<SetIntakeMode<IntakeStopped> >();
 
 	m_ManipulatorStick.Button6.WhenPressed<IntakeBall> ();
+	m_ManipulatorStick.Button3.WhenPressed<ShootBall> ();
 
 	m_ManipulatorStick.Button7.WhenPressed<SetAxlePosition<PushPosition> >();
 	m_ManipulatorStick.Button8.WhenPressed<SetAxlePosition<IntakePosition> >();
