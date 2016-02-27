@@ -23,9 +23,9 @@ class ShootBall: public Command
 		virtual void Execute()
 		{
 			Main::getShooter().Forward();
-			Wait(2.0);
+			Wait(4.0);
 			Main::getIntake().SetInternalForward();
-			Wait(2.0);
+			Wait(4.0);
 			m_finished = true;
 		}
 

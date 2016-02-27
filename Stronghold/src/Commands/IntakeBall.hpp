@@ -8,7 +8,8 @@ class IntakeBall: public Command
 {
 	public:
 		IntakeBall() :
-			m_finished(false)
+			m_finished(false),
+			m_axleMove(true)
 		{
 			Requires(&Main::getIntake());
 			Requires(&Main::getOpticalSensors());
@@ -23,12 +24,17 @@ class IntakeBall: public Command
 
 		virtual void Execute()
 		{
-			Main::getIntake().SetWheelBackward();
+			if (m_axleMove)
+			{
+				Main::getIntake().SetWheelBackward();
+			}
+
 			Main::getIntake().SetInternalForward();
 
 			if (Main::getOpticalSensors().GetSensorBack() == 0)
 			{
 				Main::getIntake().SetWheelSlow();
+				m_axleMove = false;
 			}
 
 			if (Main::getOpticalSensors().GetSensorFront() == 0)
@@ -62,4 +68,5 @@ class IntakeBall: public Command
 
 	private:
 		bool  m_finished;
+		bool  m_axleMove;
 };
