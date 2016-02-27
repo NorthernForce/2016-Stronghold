@@ -7,6 +7,7 @@
 #include "Subsystems/Intake.h"
 #include "Subsystems/Shooter.h"
 #include "Commands/Auto.h"
+#include "Subsystems/OpticalSensors.h"
 
 class Main : public IterativeRobot
 {
@@ -19,6 +20,7 @@ class Main : public IterativeRobot
 		static ArcadeDrive&			getDrive();
 		static Intake&				getIntake();
 		static Shooter&				getShooter();
+		static OpticalSensors&		getOpticalSensors();
 
 
 	private:
@@ -28,6 +30,7 @@ class Main : public IterativeRobot
 		ArcadeDrive		   m_drive;
 		Intake			   m_intake;
 		Shooter			   m_shooter;
+		OpticalSensors     m_optical;
 
 		virtual void RobotInit();
 		virtual void AutonomousInit();

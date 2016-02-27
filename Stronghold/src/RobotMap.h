@@ -50,7 +50,7 @@ enum TalonAdress
 	kBackRightTalon = 2,
 
 	kWheelTalon = 8,
-	kShooterTalon = 0,
+	kShooterTalon = 5,
 	kAxleTalon = 6,
 
 };
@@ -65,35 +65,27 @@ enum JoystickPort
 
 struct DefaultPosition
 {
-	static constexpr float kValue = 0.0;
+	static constexpr float kDegrees = 100.0;
+	static constexpr float kValue = kDegrees/360;
 };
 
-struct IntakePosition
+struct UpPosition
 {
-	static constexpr float kValue = 0.3;
+	static constexpr float kDegrees = 32.0;
+	static constexpr float kValue = kDegrees/360;
 };
 
-struct PortcullisUpPosition
+struct DownPosition
 {
-	static constexpr float kValue = 0.09;
+	static constexpr float kDegrees = 215.0;
+	static constexpr float kValue = kDegrees/360;
 };
-
-struct HoldPosition
-{
-	static constexpr float kValue = 0.857;
-};
-
-struct PushPosition
-{
-	static constexpr float kValue = 0.637;
-};
-
 
 static const float	kP = 0.2;
 static const float	kI = 0;
 static const float	kD = 0;
 
-static const int kChannelA = 0;
+static const int kChannelA = 0; // 6 and 7
 
 static const float kDeadbandLimit = 0.01;
 static const float kMaxDriveVoltage = 12.0;

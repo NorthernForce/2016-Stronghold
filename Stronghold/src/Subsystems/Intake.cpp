@@ -1,15 +1,15 @@
 #include "Intake.h"
 
 Intake::Intake() :
-	PIDSubsystem("Intake", 1.0, 0.0, 0.0),
+	PIDSubsystem("Intake", 3.0, 0.0, 0.0),
 	m_axleTalon(kAxleTalon),
 	m_wheelTalon(kWheelTalon),
 	m_axleEnc(kChannelA, 1.0, 0.0)
 //	m_pidLoop(kP, kI, kD, &m_axleEnc, &m_axleTalon)
 	//m_degrees(0.0)
 {
-	GetPIDController()->SetContinuous(false);
-	SetAbsoluteTolerance(2.0);
+	GetPIDController()->SetContinuous(true);
+	SetAbsoluteTolerance(0.1);
 	SetSetpoint(DefaultPosition::kValue);
 	Enable();
 }
@@ -82,6 +82,11 @@ void Intake::SetWheelStopped()
 
 	//m_wheelTalon.Disable();
 	//m_wheelTalon.StopMotor();
+}
+
+void Intake::SetWheelBackSlow()
+{
+	m_wheelTalon.Set(0.1, 0);
 }
 
 void Intake::init()

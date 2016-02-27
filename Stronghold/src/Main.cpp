@@ -33,6 +33,11 @@ Shooter& Main::getShooter()
 	return getRobot().m_shooter;
 }
 
+OpticalSensors& Main::getOpticalSensors()
+{
+	return getRobot().m_optical;
+}
+
 void Main::RobotInit()
 {
 	m_oi.init();
@@ -66,6 +71,10 @@ void Main::TeleopPeriodic()
 	SmartDashboard::PutNumber("Voltage", voltage);
 	double speed = getShooter().GetSpeed();
 	SmartDashboard::PutNumber("Speed", speed);
+	double opticalOne = getOpticalSensors().GetSensorFront();
+	double opticalTwo = getOpticalSensors().GetSensorBack();
+	SmartDashboard::PutNumber("OpticalFront", opticalOne);
+	SmartDashboard::PutNumber("OpticalBack", opticalTwo);
 }
 
 void Main::TestPeriodic()

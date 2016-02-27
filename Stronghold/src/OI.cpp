@@ -21,16 +21,15 @@ void OI::init()
 	m_ManipulatorStick.Button4.ToggleWhenPressed<SetIntakeMode<IntakeForward> >();
 	m_ManipulatorStick.Button4.ToggleWhenPressed<SetIntakeMode<IntakeStopped> >();
 
-	m_ManipulatorStick.Button5.WhenPressed<SetIntakeMode<IntakeBackward> >();
-	m_ManipulatorStick.Button5.WhenPressed<SetIntakeMode<IntakeStopped> >();
+	m_ManipulatorStick.Button5.ToggleWhenPressed<SetIntakeMode<IntakeBackward> >();
+	m_ManipulatorStick.Button5.ToggleWhenPressed<SetIntakeMode<IntakeStopped> >();
 
 	m_ManipulatorStick.Button6.WhenPressed<IntakeBall> ();
 	m_ManipulatorStick.Button3.WhenPressed<ShootBall> ();
 
-	m_ManipulatorStick.Button7.WhenPressed<SetAxlePosition<PushPosition> >();
-	m_ManipulatorStick.Button8.WhenPressed<SetAxlePosition<IntakePosition> >();
-	m_ManipulatorStick.Button9.WhenPressed<SetAxlePosition<PortcullisUpPosition> >();
-	m_ManipulatorStick.Button10.WhenPressed<SetAxlePosition<HoldPosition> >();
+	m_ManipulatorStick.Button8.WhenPressed<SetAxlePosition<DefaultPosition> >();
+	m_ManipulatorStick.Button9.WhenPressed<SetAxlePosition<UpPosition> >();
+	m_ManipulatorStick.Button10.WhenPressed<SetAxlePosition<DownPosition> >();
 
 	m_ManipulatorStick.Trigger.WhenPressed<SetShooterMode<ShooterOn> >();
 	m_ManipulatorStick.Button2.WhenPressed<SetShooterMode<ShooterOff> >();

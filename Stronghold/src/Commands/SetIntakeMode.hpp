@@ -7,6 +7,7 @@
 class IntakeForward{};
 class IntakeBackward{};
 class IntakeStopped{};
+class IntakeSlowBack{};
 
 
 template<class T>
@@ -58,6 +59,13 @@ class SetIntakeMode: public Command
 		{
 			Main::getIntake().SetWheelStopped();
 			m_finished = true;
+		}
+
+		void specificExecute(const IntakeSlowBack& mode)
+		{
+			Main::getIntake().SetWheelBackSlow();
+			m_finished = true;
+
 		}
 
 		virtual bool IsFinished() { return false; }
