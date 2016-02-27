@@ -4,6 +4,7 @@ Intake::Intake() :
 	PIDSubsystem("Intake", 3.0, 0.0, 0.0),
 	m_axleTalon(kAxleTalon),
 	m_wheelTalon(kWheelTalon),
+	m_internalTalon(kInternalTalon),
 	m_axleEnc(kChannelA, 1.0, 0.0)
 //	m_pidLoop(kP, kI, kD, &m_axleEnc, &m_axleTalon)
 	//m_degrees(0.0)
@@ -84,9 +85,20 @@ void Intake::SetWheelStopped()
 	//m_wheelTalon.StopMotor();
 }
 
-void Intake::SetWheelBackSlow()
+
+void Intake::SetInternalForward()
 {
-	m_wheelTalon.Set(0.1, 0);
+	m_internalTalon.Set(0.2, 0);
+}
+
+void Intake::SetInternalBackward()
+{
+	m_internalTalon.Set(-0.2, 0);
+}
+
+void Intake::SetInternalStopped()
+{
+	m_internalTalon.Set(0.0, 0);
 }
 
 void Intake::init()

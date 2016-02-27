@@ -23,17 +23,13 @@ class IntakeBall: public Command
 		virtual void Execute()
 		{
 			Main::getIntake().SetWheelForward();
+			Main::getIntake().SetInternalForward();
 
 			if (Main::getOpticalSensors().GetSensorBack() == 0)
 			{
 				Main::getIntake().SetWheelStopped();
+				Main::getIntake().SetInternalStopped();
 			}
-
-			while (Main::getOpticalSensors().GetSensorBack() == 0)
-			{
-				// Move internal back until back sensor == 1
-			}
-
 
 			m_finished = true;
 

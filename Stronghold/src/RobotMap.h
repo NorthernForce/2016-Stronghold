@@ -52,6 +52,7 @@ enum TalonAdress
 	kWheelTalon = 8,
 	kShooterTalon = 5,
 	kAxleTalon = 6,
+	kInternalTalon = 7,
 
 };
 

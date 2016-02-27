@@ -11,6 +11,7 @@ class Intake: public PIDSubsystem
 
 		CANTalon 				m_axleTalon;
 		Talon 					m_wheelTalon;
+		CANTalon				m_internalTalon;
 		AnalogPotentiometer     m_axleEnc;
 
 	protected:
@@ -26,7 +27,9 @@ class Intake: public PIDSubsystem
 		void SetWheelForward();
 		void SetWheelBackward();
 		void SetWheelStopped();
-		void SetWheelBackSlow();
+		void SetInternalForward();
+		void SetInternalBackward();
+		void SetInternalStopped();
 		void init();
 
 };
