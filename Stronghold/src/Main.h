@@ -8,6 +8,7 @@
 #include "Subsystems/Shooter.h"
 #include "Commands/Auto.h"
 #include "Subsystems/OpticalSensors.h"
+#include "Subsystems/GyroSensor.h"
 
 class Main : public IterativeRobot
 {
@@ -21,6 +22,7 @@ class Main : public IterativeRobot
 		static Intake&				getIntake();
 		static Shooter&				getShooter();
 		static OpticalSensors&		getOpticalSensors();
+		static GyroSensor&			getGyroSensor();
 
 
 	private:
@@ -31,6 +33,7 @@ class Main : public IterativeRobot
 		Intake			   m_intake;
 		Shooter			   m_shooter;
 		OpticalSensors     m_optical;
+		GyroSensor		   m_gyro;
 
 		virtual void RobotInit();
 		virtual void AutonomousInit();

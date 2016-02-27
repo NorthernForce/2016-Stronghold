@@ -3,8 +3,8 @@
 
 OpticalSensors::OpticalSensors() :
 	SubsystemWithCommand<void>("Optical Sensors"),
-	m_opticalFront(9),
-	m_opticalBack(8)
+	m_opticalFront(8),
+	m_opticalBack(9)
 {}
 
 float OpticalSensors::GetSensorFront()

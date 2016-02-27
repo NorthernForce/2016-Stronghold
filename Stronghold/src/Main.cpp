@@ -38,6 +38,11 @@ OpticalSensors& Main::getOpticalSensors()
 	return getRobot().m_optical;
 }
 
+GyroSensor& Main::getGyroSensor()
+{
+	return getRobot().m_gyro;
+}
+
 void Main::RobotInit()
 {
 	m_oi.init();
@@ -75,6 +80,8 @@ void Main::TeleopPeriodic()
 	double opticalTwo = getOpticalSensors().GetSensorBack();
 	SmartDashboard::PutNumber("OpticalFront", opticalOne);
 	SmartDashboard::PutNumber("OpticalBack", opticalTwo);
+	double gyroValue = getGyroSensor().GetGyroAngle();
+	SmartDashboard::PutNumber("Gyro", gyroValue);
 }
 
 void Main::TestPeriodic()

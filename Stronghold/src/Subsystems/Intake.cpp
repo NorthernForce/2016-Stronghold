@@ -85,15 +85,20 @@ void Intake::SetWheelStopped()
 	//m_wheelTalon.StopMotor();
 }
 
+void Intake::SetWheelSlow()
+{
+	m_wheelTalon.Set(-0.08, 0);
+}
+
 
 void Intake::SetInternalForward()
 {
-	m_internalTalon.Set(0.2, 0);
+	m_internalTalon.Set(0.8, 0);
 }
 
 void Intake::SetInternalBackward()
 {
-	m_internalTalon.Set(-0.2, 0);
+	m_internalTalon.Set(-0.8, 0);
 }
 
 void Intake::SetInternalStopped()
@@ -105,6 +110,7 @@ void Intake::init()
 {
 	m_wheelTalon.Set(0.0, 0);
 	m_axleTalon.Set(0.0, 0);
+	m_internalTalon.Set(0.0, 0);
 
 	//m_wheelTalon.SetSpeed(0.0);
 	//m_axleTalon.StopMotor();
