@@ -93,12 +93,12 @@ void Intake::SetWheelSlow()
 
 void Intake::SetInternalForward()
 {
-	m_internalTalon.Set(0.8, 0);
+	m_internalTalon.Set(1.0, 0);
 }
 
 void Intake::SetInternalBackward()
 {
-	m_internalTalon.Set(-0.8, 0);
+	m_internalTalon.Set(-1.0, 0);
 }
 
 void Intake::SetInternalStopped()

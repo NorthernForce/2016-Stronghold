@@ -52,7 +52,6 @@ void Main::RobotInit()
 
 	autocmd = new Auto();
 	lw = LiveWindow::GetInstance();
-
 }
 
 void Main::AutonomousInit()
@@ -80,8 +79,8 @@ void Main::TeleopPeriodic()
 	double opticalTwo = getOpticalSensors().GetSensorBack();
 	SmartDashboard::PutNumber("OpticalFront", opticalOne);
 	SmartDashboard::PutNumber("OpticalBack", opticalTwo);
-	double gyroValue = getGyroSensor().GetGyroAngle();
-	SmartDashboard::PutNumber("Gyro", gyroValue);
+
+	getGyroSensor().GetGyro();
 }
 
 void Main::TestPeriodic()

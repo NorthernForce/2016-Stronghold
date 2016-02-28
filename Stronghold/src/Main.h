@@ -1,6 +1,7 @@
 #pragma once
 
 #include "WPILib.h"
+#include "AHRS.h"
 #include "Commands/Command.h"
 #include "OI.h"
 #include "Subsystems/ArcadeDrive.h"
