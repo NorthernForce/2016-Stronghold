@@ -87,7 +87,7 @@ void Intake::SetWheelStopped()
 
 void Intake::SetWheelSlow()
 {
-	m_wheelTalon.Set(-0.08, 0);
+	m_wheelTalon.Set(-0.15, 0);
 }
 
 

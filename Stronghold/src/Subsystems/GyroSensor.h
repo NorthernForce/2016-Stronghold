@@ -20,6 +20,8 @@ class GyroSensor: public SubsystemWithCommand<void>
 
 		GyroSensor();
 		void GetGyro();
+		float GetAngle();
+		float GetDisplacement();
 
 	private:
 		AHRS *m_gyro;

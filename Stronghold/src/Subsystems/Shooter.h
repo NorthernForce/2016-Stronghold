@@ -16,6 +16,6 @@ class Shooter: public SubsystemWithCommand<void>
 		void Stopped();
 		void init();
 		float GetVoltage();
-		double GetSpeed();
+		double GetCurrent();
 		bool IsShooterReady();
 };

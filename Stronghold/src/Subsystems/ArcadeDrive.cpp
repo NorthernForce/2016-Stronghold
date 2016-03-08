@@ -8,6 +8,8 @@ ArcadeDrive::ArcadeDrive() :
 		m_frontRight(kFrontRightTalon),
 		m_backLeft(kBackLeftTalon),
 		m_backRight(kBackRightTalon),
+		m_encRight(2, 3),
+		m_encLeft(0, 1),
 		P(0.50),
 		I(0.02),
 		D(0.00)
@@ -52,9 +54,9 @@ void ArcadeDrive::EnableEncoders(bool invertGains)
 {
 	// When encoders are enabled, all motors must be inverted from
 	// what they normaly would be.
-	m_drive.SetInvertedMotor(RobotDrive::kFrontLeftMotor, false);
+	m_drive.SetInvertedMotor(RobotDrive::kFrontLeftMotor, true);
 	m_drive.SetInvertedMotor(RobotDrive::kFrontRightMotor, true);
-	m_drive.SetInvertedMotor(RobotDrive::kRearLeftMotor,  false);
+	m_drive.SetInvertedMotor(RobotDrive::kRearLeftMotor,  true);
 	m_drive.SetInvertedMotor(RobotDrive::kRearRightMotor,  true);
 	// Set max output to be max drive rpm, since the Talons read
 	// the encoder speed in rpm.
@@ -161,6 +163,7 @@ void ArcadeDrive::FlipDrive(bool flip)
 		m_drive.SetInvertedMotor(RobotDrive::kRearLeftMotor,  true);
 		m_drive.SetInvertedMotor(RobotDrive::kRearRightMotor,  true);
 	}
+
 	else
 	{
 		m_drive.SetInvertedMotor(RobotDrive::kFrontLeftMotor, false);
@@ -170,4 +173,18 @@ void ArcadeDrive::FlipDrive(bool flip)
 	}
 }
 
+
+void ArcadeDrive::AutoDrive()
+{
+	/* Not sure about the encoders, but apparently the kit of parts encoder is
+	 * 1440 pulses per revolution, or .25 degrees per pulse
+	 */
+
+	m_encRight.SetDistancePerPulse(0.25);
+	m_encRight.SetDistancePerPulse(0.25);
+
+
+	float m_rightRate = m_encRight.GetRate();
+	float m_leftRate = m_encLeft.GetRate();
+}
 

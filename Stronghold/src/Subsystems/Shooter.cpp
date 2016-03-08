@@ -22,17 +22,17 @@ void Shooter::init()
 
 float Shooter::GetVoltage()
 {
-	return m_shooterTalon.GetBusVoltage();
+	return m_shooterTalon.GetOutputVoltage();
 }
 
-double Shooter::GetSpeed()
+double Shooter::GetCurrent()
 {
-	return m_shooterTalon.GetSpeed();
+	return m_shooterTalon.GetOutputCurrent();
 }
 
 bool Shooter::IsShooterReady()
 {
-	if (GetSpeed() > 1)
+	if (GetCurrent() > 4.1)
 	{
 		return true;
 	}

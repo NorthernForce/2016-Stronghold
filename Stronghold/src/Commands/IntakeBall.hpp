@@ -19,7 +19,7 @@ class IntakeBall: public Command
 		{
 			Main::getIntake().Enable();
 			m_finished = false;
-			Main::getIntake().SetSetpoint(0.6); //hack--need to change to a constant
+			Main::getIntake().SetSetpoint(0.7); //hack--need to change to a constant
 		}
 
 		virtual void Execute()

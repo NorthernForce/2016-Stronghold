@@ -78,7 +78,13 @@ struct UpPosition
 
 struct DownPosition
 {
-	static constexpr float kDegrees = 215.0;
+	static constexpr float kDegrees = 220.0;
+	static constexpr float kValue = kDegrees/360;
+};
+
+struct PortcullisPosition
+{
+	static constexpr float kDegrees = 160;
 	static constexpr float kValue = kDegrees/360;
 };
 
@@ -93,3 +99,6 @@ static const float kMaxDriveVoltage = 12.0;
 static const float kMaxDriveRPM = 475.0;
 static const float kRevsPerFoot = 12.0/(2.0*3.14159*3.0); /* 12in / (1ft * 2.0pi r(in)) */
 static const int kEncoderPulsesPerRev = 256;
+
+
+// Diameter of wheel is 102 mm

@@ -1,7 +1,9 @@
 #include "Main.h"
 
-Main::Main() : lw(0), autocmd()
-{}
+Main::Main() : lw(0), autocmd(), m_chooser()
+{
+	m_chooser = new SendableChooser();
+}
 
 Main::~Main()
 {
@@ -50,12 +52,16 @@ void Main::RobotInit()
 	m_intake.init();
 	m_shooter.init();
 
-	autocmd = new Auto();
+	m_chooser->AddDefault("Low Bar Start", new Auto());
+	//m_chooser->AddObject("Middle start, new Auto2());
+	//m_chooser->AddObject("Spy start, new Auto3());
+	SmartDashboard::PutData("Autonomous modes", m_chooser);
 	lw = LiveWindow::GetInstance();
 }
 
 void Main::AutonomousInit()
 {
+	autocmd = (Command *) m_chooser->GetSelected();
 	autocmd->Start();
 }
 
@@ -73,8 +79,8 @@ void Main::TeleopPeriodic()
 	Scheduler::GetInstance()->Run();
 	double voltage = getShooter().GetVoltage();
 	SmartDashboard::PutNumber("Voltage", voltage);
-	double speed = getShooter().GetSpeed();
-	SmartDashboard::PutNumber("Speed", speed);
+	double speed = getShooter().GetCurrent();
+	SmartDashboard::PutNumber("Current", speed);
 	double opticalOne = getOpticalSensors().GetSensorFront();
 	double opticalTwo = getOpticalSensors().GetSensorBack();
 	SmartDashboard::PutNumber("OpticalFront", opticalOne);

@@ -19,6 +19,9 @@ void OI::init()
 	m_DriverStick.RightBumper.WhenPressed<SetDriveMode<DriveModeFlipped> > ();
 	m_DriverStick.LeftBumper.WhenPressed<SetDriveMode<DriveModeRegular> > ();
 
+	m_DriverStick.A.WhenPressed<SetAxlePosition<UpPosition> > ();
+	m_DriverStick.B.WhenPressed<SetAxlePosition<DownPosition> >();
+
 	m_ManipulatorStick.Button4.ToggleWhenPressed<SetIntakeMode<IntakeForward> >();
 	m_ManipulatorStick.Button4.ToggleWhenPressed<SetIntakeMode<IntakeStopped> >();
 
@@ -32,6 +35,7 @@ void OI::init()
 	m_ManipulatorStick.Button8.WhenPressed<SetAxlePosition<DefaultPosition> >();
 	m_ManipulatorStick.Button9.WhenPressed<SetAxlePosition<UpPosition> >();
 	m_ManipulatorStick.Button10.WhenPressed<SetAxlePosition<DownPosition> >();
+	m_ManipulatorStick.Button11.WhenPressed<SetAxlePosition<PortcullisPosition> >();
 
 	m_ManipulatorStick.Button2.ToggleWhenPressed<SetShooterMode<ShooterOn> >();
 	m_ManipulatorStick.Button2.ToggleWhenPressed<SetShooterMode<ShooterOff> >();

@@ -23,23 +23,10 @@ class SetIntakeMode: public Command
 		{
 			m_finished = false;
 		}
+
 		virtual void Execute()
 		{
 			specificExecute(T());
-			/*
-			switch(mode)
-			{
-			case FORWARD:
-				Main::getIntake().SetWheelForward();
-				break;
-			case BACKWARD:
-				Main::getIntake().SetWheelBackward();
-				break;
-			case STOPPED:
-				Main::getIntake().SetWheelStopped();
-				break;
-			}
-			*/
 		}
 
 		void specificExecute(const IntakeForward& mode)

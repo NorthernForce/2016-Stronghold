@@ -12,7 +12,7 @@ class ShootBall: public Command
 		{
 			Requires(&Main::getShooter());
 			Requires(&Main::getIntake());
-			Requires(&Main::getOpticalSensors());
+			//Requires(&Main::getOpticalSensors());
 		}
 
 		virtual void Initialize()
@@ -22,8 +22,6 @@ class ShootBall: public Command
 
 		virtual void Execute()
 		{
-			Main::getShooter().Forward();
-			Wait(4.0);
 			Main::getIntake().SetInternalForward();
 			Wait(4.0);
 			m_finished = true;

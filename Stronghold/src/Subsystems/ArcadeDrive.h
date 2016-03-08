@@ -16,6 +16,9 @@ class ArcadeDrive: public SubsystemWithCommand<DriveWithJoystick>
 		CANTalon m_backLeft;
 		CANTalon m_backRight;
 
+		Encoder m_encRight;
+		Encoder m_encLeft;
+
 		double P;
 		double I;
 		double D;
@@ -29,5 +32,6 @@ class ArcadeDrive: public SubsystemWithCommand<DriveWithJoystick>
 		void EnableEncoders(bool invertGains = true);
 		void DisableEncoders();
 		void FlipDrive(bool flip);
+		void AutoDrive();
 };
 
