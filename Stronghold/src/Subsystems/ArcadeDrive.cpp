@@ -8,7 +8,7 @@ ArcadeDrive::ArcadeDrive() :
 		m_frontRight(kFrontRightTalon),
 		m_backLeft(kBackLeftTalon),
 		m_backRight(kBackRightTalon),
-		m_encRight(2, 3),
+		m_encRight(3, 2),
 		m_encLeft(0, 1),
 		P(0.50),
 		I(0.02),
@@ -47,6 +47,11 @@ void ArcadeDrive::init()
 //	m_backRight.SetExpiration(0.5);
 
 	DisableEncoders();
+
+	m_encRight.SetDistancePerPulse(kDistancePerPulse); // m_distancePerPulse in mm
+	m_encRight.SetDistancePerPulse(kDistancePerPulse);
+
+
 }
 
 
@@ -174,17 +179,31 @@ void ArcadeDrive::FlipDrive(bool flip)
 }
 
 
-void ArcadeDrive::AutoDrive()
+float ArcadeDrive::GetRightDistance()
 {
-	/* Not sure about the encoders, but apparently the kit of parts encoder is
-	 * 1440 pulses per revolution, or .25 degrees per pulse
-	 */
 
-	m_encRight.SetDistancePerPulse(0.25);
-	m_encRight.SetDistancePerPulse(0.25);
-
-
-	float m_rightRate = m_encRight.GetRate();
-	float m_leftRate = m_encLeft.GetRate();
+	return m_encRight.GetDistance();
 }
+
+float ArcadeDrive::GetLeftDistance()
+{
+	return m_encLeft.GetDistance();
+}
+
+void ArcadeDrive::ResetRight()
+{
+	m_encRight.Reset();
+}
+
+void ArcadeDrive::ResetLeft()
+{
+	m_encLeft.Reset();
+}
+
+void ArcadeDrive::PutEncoderValues()
+{
+	SmartDashboard::PutNumber("Right Encoder:", m_encRight.GetDistance());
+	SmartDashboard::PutNumber("Left Encoder:", m_encLeft.GetDistance());
+}
+
 

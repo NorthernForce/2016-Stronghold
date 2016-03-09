@@ -1,4 +1,6 @@
 #include "Main.h"
+#include "Commands/AutonomousDrive.hpp"
+
 
 Main::Main() : lw(0), autocmd(), m_chooser()
 {
@@ -52,7 +54,7 @@ void Main::RobotInit()
 	m_intake.init();
 	m_shooter.init();
 
-	m_chooser->AddDefault("Low Bar Start", new Auto());
+	m_chooser->AddDefault("Low Bar Start", new AutonomousDrive(0.5, 100, 0));
 	//m_chooser->AddObject("Middle start, new Auto2());
 	//m_chooser->AddObject("Spy start, new Auto3());
 	SmartDashboard::PutData("Autonomous modes", m_chooser);

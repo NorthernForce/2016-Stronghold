@@ -35,9 +35,14 @@ void GyroSensor::GetGyro()
 	SmartDashboard::PutNumber(  "Displacement_Y",       m_gyro->GetDisplacementY() );
 }
 
+void GyroSensor::Zero()
+{
+	m_gyro->ZeroYaw();
+}
+
 float GyroSensor::GetAngle()
 {
-	return m_gyro->GetAngle();
+	return m_gyro->GetYaw();
 }
 
 float GyroSensor::GetDisplacement()

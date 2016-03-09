@@ -6,23 +6,42 @@
 class AutonomousDrive : public Command
 {
 public:
-	AutonomousDrive(float duration, float x, float y) :
-		m_duration(duration),
-		m_x(x),
-		m_y(y)
+	AutonomousDrive(float speed, float distance, float angle) :
+		m_duration(15), //length of autonomous
+		m_speed(speed),
+		m_distance(distance),
+		m_angle(angle)
 	{
 		Requires(&Main::getDrive());
+		Requires(&Main::getGyroSensor());
 	}
 
 	void Initialize() override
 	{
 		m_timer.Reset();
 		m_timer.Start();
+		Main::getGyroSensor().Zero();
+		Main::getDrive().ResetRight();
+		Main::getDrive().ResetLeft();
+		Main::getDrive().DriveArcade(m_speed, 0.0, true);
 	}
 
 	void Execute() override
 	{
-		Main::getDrive().DriveArcade(m_x, m_y, true);
+		Main::getDrive().PutEncoderValues();
+
+		if (Main::getDrive().GetLeftDistance() > m_distance) // Right encoder is currently giving strange values
+		{
+			Main::getDrive().DriveArcade(0.0, 0.0, true);
+		}
+
+		/*
+		if (Main::getGyroSensor().GetAngle() > m_angle)
+		{
+			m_changeSpeedB = 0.0;
+			Main::getDrive().DriveArcade(m_changeSpeedA, m_changeSpeedB, true);
+		}
+		*/
 	}
 
 	bool IsFinished() override
@@ -42,8 +61,10 @@ public:
 
 private:
 	const double m_duration;
-	const float m_x;
-	const float m_y;
+	const float m_speed;
+	const float m_distance;
+	const float m_angle;
+
 	Timer m_timer;
 };
 

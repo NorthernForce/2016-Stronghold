@@ -97,8 +97,11 @@ static const int kChannelA = 0; // 6 and 7
 static const float kDeadbandLimit = 0.01;
 static const float kMaxDriveVoltage = 12.0;
 static const float kMaxDriveRPM = 475.0;
-static const float kRevsPerFoot = 12.0/(2.0*3.14159*3.0); /* 12in / (1ft * 2.0pi r(in)) */
+//static const float kRevsPerFoot = 12.0/(2.0*3.14159*3.0); /* 12in / (1ft * 2.0pi r(in)) */
 static const int kEncoderPulsesPerRev = 256;
+static const int kWheelRadius = 51; //mm
+static constexpr float kPracticeGearRatio = 9.52; //9.52:1
+static constexpr float kCompetitionGearRatio = 5.67; //5.67:1
+static const float kDistancePerPulse = kWheelRadius * 6.28 / (kEncoderPulsesPerRev * kPracticeGearRatio);
 
 
-// Diameter of wheel is 102 mm
