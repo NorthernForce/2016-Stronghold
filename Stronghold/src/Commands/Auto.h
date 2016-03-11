@@ -3,14 +3,9 @@
 #include "Commands/Command.h"
 #include "WPILib.h"
 
-class Auto: public Command
+class Auto: public CommandGroup
 {
 public:
 	Auto();
-	void Initialize();
-	void Execute();
-	bool IsFinished();
-	void End();
-	void Interrupted();
 };
 

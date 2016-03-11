@@ -17,6 +17,7 @@ class ShootBall: public Command
 
 		virtual void Initialize()
 		{
+			Main::getShooter().Forward();
 			m_finished = false;
 		}
 

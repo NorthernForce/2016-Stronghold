@@ -8,6 +8,10 @@ GyroSensor::GyroSensor() :
 	m_gyro = new AHRS(SerialPort::kMXP);
 }
 
+void GyroSensor::init()
+{
+	Zero();
+}
 
 void GyroSensor::GetGyro()
 {
@@ -37,7 +41,7 @@ void GyroSensor::GetGyro()
 
 void GyroSensor::Zero()
 {
-	m_gyro->ZeroYaw();
+	//m_gyro->ZeroYaw();
 }
 
 float GyroSensor::GetAngle()

@@ -1,3 +1,5 @@
+
+
 #include "ReadCommandFile.hpp"
 #include "Commands/ShootBall.hpp"
 #include "Commands/AutonomousDrive.hpp"
@@ -36,7 +38,8 @@ std::unique_ptr<Command> BuildDriveCommand(char* s)
 	const float duration = std::strtof(++s, &s);
 	const float x = std::strtof(++s, &s);
 	const float y = std::strtof(++s, &s);
-	return std::unique_ptr<Command>(new AutonomousDrive(duration, x, y));
+	const float z = std::strtof(++s, &s);
+	return std::unique_ptr<Command>(new AutonomousDrive<DriveStraight>(duration, x, y, z));
 }
 
 std::unique_ptr<Command> BuildShootCommand(char*)
@@ -97,3 +100,5 @@ std::shared_ptr<CommandGroup> ReadCommandFromFile(const char* file_name)
 	ReportBadFileName(file_name);
 	return nullptr;
 }
+
+

@@ -8,8 +8,8 @@ ArcadeDrive::ArcadeDrive() :
 		m_frontRight(kFrontRightTalon),
 		m_backLeft(kBackLeftTalon),
 		m_backRight(kBackRightTalon),
-		m_encRight(3, 2),
-		m_encLeft(0, 1),
+		m_encRight(3, 2, false, Encoder::EncodingType::k1X),
+		m_encLeft(0, 1, false, Encoder::EncodingType::k1X),
 		P(0.50),
 		I(0.02),
 		D(0.00)
@@ -48,7 +48,7 @@ void ArcadeDrive::init()
 
 	DisableEncoders();
 
-	m_encRight.SetDistancePerPulse(kDistancePerPulse); // m_distancePerPulse in mm
+	m_encRight.SetDistancePerPulse(kDistancePerPulse); // kDistancePerPulse in mm
 	m_encRight.SetDistancePerPulse(kDistancePerPulse);
 
 
@@ -206,4 +206,8 @@ void ArcadeDrive::PutEncoderValues()
 	SmartDashboard::PutNumber("Left Encoder:", m_encLeft.GetDistance());
 }
 
-
+void ArcadeDrive::SetDistancePerPulse()
+{
+	m_encRight.SetDistancePerPulse(kDistancePerPulse);
+	m_encLeft.SetDistancePerPulse(kDistancePerPulse);
+}

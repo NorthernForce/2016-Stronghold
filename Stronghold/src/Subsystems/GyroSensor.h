@@ -19,6 +19,7 @@ class GyroSensor: public SubsystemWithCommand<void>
 	public:
 
 		GyroSensor();
+		void init();
 		void GetGyro();
 		void Zero();
 		float GetAngle();

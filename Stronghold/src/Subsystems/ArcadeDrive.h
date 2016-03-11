@@ -36,5 +36,6 @@ class ArcadeDrive: public SubsystemWithCommand<DriveWithJoystick>
 		void ResetRight();
 		void ResetLeft();
 		void PutEncoderValues();
+		void SetDistancePerPulse();
 };
 
