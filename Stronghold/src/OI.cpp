@@ -7,6 +7,7 @@
 #include "Commands/IntakeBall.hpp"
 #include "Commands/ShootBall.hpp"
 #include "Commands/ExpelBall.hpp"
+#include "Commands/SetFlashlightMode"
 
 
 OI::OI() :
@@ -39,6 +40,9 @@ void OI::init()
 
 	m_ManipulatorStick.Button2.ToggleWhenPressed<SetShooterMode<ShooterOn> >();
 	m_ManipulatorStick.Button2.ToggleWhenPressed<SetShooterMode<ShooterOff> >();
+
+	m_ManipulatorStick.Button7.ToggleWhenPressed<SetFlashlightMode<FlashlightOn> >;
+	m_ManipulatorStick.Button7.ToggleWhenPressed<SetFlashlightMode<FlashlightOff> >;
 }
 
 FRCXboxJoystick& OI::GetDriverStick()

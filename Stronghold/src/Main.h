@@ -1,7 +1,7 @@
 #pragma once
 
 #include "WPILib.h"
-#include "AHRS.h"
+#include "Lib/AHRS.h"
 #include "Commands/Command.h"
 #include "OI.h"
 #include "Subsystems/ArcadeDrive.h"
@@ -10,6 +10,7 @@
 #include "Commands/Auto.h"
 #include "Subsystems/OpticalSensors.h"
 #include "Subsystems/GyroSensor.h"
+#include "Subsystems/Flashlight.h"
 
 class Main : public IterativeRobot
 {
@@ -24,6 +25,7 @@ class Main : public IterativeRobot
 		static Shooter&				getShooter();
 		static OpticalSensors&		getOpticalSensors();
 		static GyroSensor&			getGyroSensor();
+		static Flashlight&			getFlashlight();
 
 
 	private:
@@ -36,6 +38,7 @@ class Main : public IterativeRobot
 		Shooter			   m_shooter;
 		OpticalSensors     m_optical;
 		GyroSensor		   m_gyro;
+		Flashlight  	   m_flashlight;
 
 		virtual void RobotInit();
 		virtual void AutonomousInit();

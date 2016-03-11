@@ -56,6 +56,11 @@ enum TalonAdress
 
 };
 
+enum Visualport
+{
+	kFlashlightPort = 1
+};
+
 
 enum JoystickPort
 {
