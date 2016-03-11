@@ -5,6 +5,7 @@
 Main::Main() : lw(0), autocmd(), m_chooser()
 {
 	m_chooser = new SendableChooser();
+	ahrs = new AHRS(SerialPort::kMXP);
 }
 
 Main::~Main()
@@ -45,6 +46,11 @@ OpticalSensors& Main::getOpticalSensors()
 GyroSensor& Main::getGyroSensor()
 {
 	return getRobot().m_gyro;
+}
+
+Flashlight& Main::getFlashlight()
+{
+	return getFlashlight();
 }
 
 void Main::RobotInit()
