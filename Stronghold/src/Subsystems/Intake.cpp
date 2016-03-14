@@ -1,7 +1,8 @@
 #include "Intake.h"
+#include "Commands/AutoAdjust.hpp"
 
 Intake::Intake() :
-	PIDSubsystem("Intake", 3.0, 0.0, 0.0),
+	PIDSubsystem("Intake", 2.0, 0.1, 0.0),
 	m_axleTalon(kAxleTalon),
 	m_wheelTalon(kWheelTalon),
 	m_internalTalon(kInternalTalon),
@@ -11,6 +12,10 @@ Intake::Intake() :
 {
 	GetPIDController()->SetContinuous(true);
 	SetAbsoluteTolerance(0.1);
+
+	SetInputRange(0.0, 1.0); //try (0.0, 360.0)
+	SetOutputRange(0.0, 1.0); //try (0.0, 220.0)
+
 	SetSetpoint(DefaultPosition::kValue);
 	Enable();
 }
@@ -50,6 +55,10 @@ double Intake::GetEncoderValue()
 //	return m_degrees;
 //}
 
+void Intake::InitDefaultCommand()
+{
+	SetDefaultCommand(new AutoAdjust());
+}
 void Intake::SetAxleForward()
 {
 	m_axleTalon.Set(0.5, 0);
@@ -91,14 +100,14 @@ void Intake::SetWheelSlow()
 }
 
 
-void Intake::SetInternalForward()
+void Intake::SetInternalForward(float set)
 {
-	m_internalTalon.Set(1.0, 0);
+	m_internalTalon.Set(set, 0);
 }
 
-void Intake::SetInternalBackward()
+void Intake::SetInternalBackward(float set)
 {
-	m_internalTalon.Set(-1.0, 0);
+	m_internalTalon.Set(-set, 0);
 }
 
 void Intake::SetInternalStopped()
@@ -111,6 +120,7 @@ void Intake::init()
 	m_wheelTalon.Set(0.0, 0);
 	m_axleTalon.Set(0.0, 0);
 	m_internalTalon.Set(0.0, 0);
+
 
 	//m_wheelTalon.SetSpeed(0.0);
 	//m_axleTalon.StopMotor();

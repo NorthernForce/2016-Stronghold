@@ -1,13 +1,13 @@
 #pragma once
 
 #include "WPILib.h"
-#include "Lib/AHRS.h"
 #include "Commands/Command.h"
 #include "OI.h"
 #include "Subsystems/ArcadeDrive.h"
 #include "Subsystems/Intake.h"
 #include "Subsystems/Shooter.h"
 #include "Commands/Auto.h"
+#include "Commands/StraightAuto.h"
 #include "Subsystems/OpticalSensors.h"
 #include "Subsystems/GyroSensor.h"
 #include "Subsystems/Flashlight.h"
@@ -25,7 +25,7 @@ class Main : public IterativeRobot
 		static Shooter&				getShooter();
 		static OpticalSensors&		getOpticalSensors();
 		static GyroSensor&			getGyroSensor();
-		static Flashlight&			getFlashlight();
+	    static Flashlight&			getFlashlight();
 
 
 	private:

@@ -4,7 +4,7 @@
 #include "WPILib.h"
 #include "RobotMap.h"
 
-class OpticalSensors: public SubsystemWithCommand<void>
+class OpticalSensors: public Subsystem
 {
 	public:
 

@@ -21,6 +21,7 @@ class Intake: public PIDSubsystem
 	public:
 		Intake();
 
+		void InitDefaultCommand();
 		void SetAxleForward();
 		void SetAxleBackward();
 		void SetAxleStopped();
@@ -28,8 +29,8 @@ class Intake: public PIDSubsystem
 		void SetWheelBackward();
 		void SetWheelStopped();
 		void SetWheelSlow();
-		void SetInternalForward();
-		void SetInternalBackward();
+		void SetInternalForward(float set);
+		void SetInternalBackward(float set);
 		void SetInternalStopped();
 		void init();
 

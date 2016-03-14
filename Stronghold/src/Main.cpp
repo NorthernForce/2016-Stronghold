@@ -5,7 +5,6 @@
 Main::Main() : lw(0), autocmd(), m_chooser()
 {
 	m_chooser = new SendableChooser();
-	ahrs = new AHRS(SerialPort::kMXP);
 }
 
 Main::~Main()
@@ -50,7 +49,7 @@ GyroSensor& Main::getGyroSensor()
 
 Flashlight& Main::getFlashlight()
 {
-	return getFlashlight();
+	return getRobot().m_flashlight;
 }
 
 void Main::RobotInit()
@@ -60,12 +59,16 @@ void Main::RobotInit()
 	m_intake.init();
 	m_shooter.init();
 	m_gyro.init();
+	m_flashlight.init();
 
 	m_chooser->AddDefault("Low Bar Start", new Auto());
-	//m_chooser->AddObject("Middle start, new Auto2());
+	m_chooser->AddObject("Drive Straight", new StraightAuto());
 	//m_chooser->AddObject("Spy start, new Auto3());
 	SmartDashboard::PutData("Autonomous modes", m_chooser);
 	lw = LiveWindow::GetInstance();
+
+	CameraServer::GetInstance()->SetQuality(50);
+	CameraServer::GetInstance()->StartAutomaticCapture();
 }
 
 void Main::AutonomousInit()
@@ -98,6 +101,10 @@ void Main::TeleopPeriodic()
 	getGyroSensor().GetGyro();
 
 	m_drive.PutEncoderValues();
+
+	//double intakeNumber = getIntake().GetPosition();
+
+	//SmartDashboard::PutNumber("Intake Encoder", intakeNumber);
 }
 
 void Main::TestPeriodic()

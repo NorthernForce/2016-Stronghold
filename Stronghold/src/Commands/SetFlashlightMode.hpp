@@ -1,3 +1,4 @@
+
 #pragma once
 
 #include "Commands/Command.h"
@@ -45,3 +46,7 @@ class SetFlashlightMode: public Command
 	private:
 		bool m_finished;
 };
+
+
+
+

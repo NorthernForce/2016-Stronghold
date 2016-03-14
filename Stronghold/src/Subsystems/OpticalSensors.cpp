@@ -2,7 +2,7 @@
 
 
 OpticalSensors::OpticalSensors() :
-	SubsystemWithCommand<void>("Optical Sensors"),
+	Subsystem("Optical Sensors"),
 	m_opticalFront(8),
 	m_opticalBack(9)
 {}

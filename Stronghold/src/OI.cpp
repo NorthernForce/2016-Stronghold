@@ -7,7 +7,7 @@
 #include "Commands/IntakeBall.hpp"
 #include "Commands/ShootBall.hpp"
 #include "Commands/ExpelBall.hpp"
-#include "Commands/SetFlashlightMode"
+#include "Commands/SetFlashlightMode.hpp"
 
 
 OI::OI() :
@@ -33,16 +33,20 @@ void OI::init()
 	m_ManipulatorStick.Button3.WhenPressed<ShootBall> ();
 	m_ManipulatorStick.Trigger.WhenPressed<ExpelBall> ();
 
-	m_ManipulatorStick.Button8.WhenPressed<SetAxlePosition<DefaultPosition> >();
-	m_ManipulatorStick.Button9.WhenPressed<SetAxlePosition<UpPosition> >();
-	m_ManipulatorStick.Button10.WhenPressed<SetAxlePosition<DownPosition> >();
-	m_ManipulatorStick.Button11.WhenPressed<SetAxlePosition<PortcullisPosition> >();
+	m_ManipulatorStick.Button8.WhileHeld<SetAxleMotion<AxleMoveForward>> ();
+	m_ManipulatorStick.Button8.WhenReleased<SetAxleMotion<AxleMoveStopped>> ();
+	m_ManipulatorStick.Button9.WhileHeld<SetAxleMotion<AxleMoveBackward>> ();
+	m_ManipulatorStick.Button9.WhenReleased<SetAxleMotion<AxleMoveStopped>> ();
+
+	m_ManipulatorStick.Button10.WhenPressed<SetAxlePosition<UpPosition> >();
+	m_ManipulatorStick.Button11.WhenPressed<SetAxlePosition<DownPosition> >();
+	//m_ManipulatorStick.Button11.WhenPressed<SetAxlePosition<PortcullisPosition> >();
 
 	m_ManipulatorStick.Button2.ToggleWhenPressed<SetShooterMode<ShooterOn> >();
 	m_ManipulatorStick.Button2.ToggleWhenPressed<SetShooterMode<ShooterOff> >();
 
-	m_ManipulatorStick.Button7.ToggleWhenPressed<SetFlashlightMode<FlashlightOn> >;
-	m_ManipulatorStick.Button7.ToggleWhenPressed<SetFlashlightMode<FlashlightOff> >;
+	m_ManipulatorStick.Button7.ToggleWhenPressed<SetFlashlightMode<FlashlightOn> >();
+	m_ManipulatorStick.Button7.ToggleWhenPressed<SetFlashlightMode<FlashlightOff> >();
 }
 
 FRCXboxJoystick& OI::GetDriverStick()

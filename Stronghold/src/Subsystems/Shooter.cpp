@@ -1,10 +1,25 @@
 #include "Shooter.h"
 
 Shooter::Shooter() :
-	SubsystemWithCommand<void>("Shooter"),
-	m_shooterTalon(kShooterTalon)
+	Subsystem("Shooter"),//PIDSubsystem("Shooter", 2.0, 0.0, 0.0),
+	m_shooterTalon(kShooterTalon),
+	m_shooterEnc(7, 1.0, 0.0)
 {}
+/*	GetPIDController()->SetContinuous(true);
+	SetAbsoluteTolerance(0.1);
+	Enable();
+}
 
+double Shooter::ReturnPIDInput()
+{
+	return m_shooterEnc.Get();
+}
+
+void Shooter::UsePIDOutput(double output)
+{
+	m_shooterTalon.PIDWrite(output);
+}
+*/
 void Shooter::Forward()
 {
 	m_shooterTalon.Set(1.0, 0);

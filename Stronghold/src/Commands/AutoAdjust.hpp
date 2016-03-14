@@ -4,41 +4,45 @@
 #include "../Main.h"
 
 
-class ShootBall: public Command
+class AutoAdjust: public Command
 {
 	public:
-		ShootBall() :
+		AutoAdjust() :
 			m_finished(false)
 		{
-			Requires(&Main::getShooter());
 			Requires(&Main::getIntake());
-			//Requires(&Main::getOpticalSensors());
+			Requires(&Main::getOpticalSensors());
 		}
 
 		virtual void Initialize()
 		{
-			//Main::getShooter().Forward();
 			m_finished = false;
 		}
 
 		virtual void Execute()
 		{
-			Main::getIntake().SetInternalForward(1.0);
-			Wait(4.0);
-			m_finished = true;
+			if (Main::getOpticalSensors().GetSensorFront() == 0.0)
+			{
+				Main::getIntake().SetInternalBackward(0.2);
+			}
+
+			if (Main::getOpticalSensors().GetSensorBack() == 0.0)
+			{
+				Main::getIntake().SetInternalForward(0.2);
+			}
+
+			m_finished = Main::getOpticalSensors().GetSensorBack() && Main::getOpticalSensors().GetSensorFront();
 		}
 
 
 		virtual bool IsFinished() { return m_finished; }
 		virtual void End()
 		{
-			Main::getShooter().Stopped();
 			Main::getIntake().SetInternalStopped();
 		}
 
 		virtual void Interrupted()
 		{
-			Main::getShooter().Stopped();
 			Main::getIntake().SetInternalStopped();
 		}
 

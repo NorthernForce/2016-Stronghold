@@ -19,7 +19,7 @@ class IntakeBall: public Command
 		{
 			Main::getIntake().Enable();
 			m_finished = false;
-			Main::getIntake().SetSetpoint(0.7); //hack--need to change to a constant
+			Main::getIntake().SetSetpoint(0.4); //was .7, should be DownPosition::kDegrees
 		}
 
 		virtual void Execute()
@@ -29,7 +29,7 @@ class IntakeBall: public Command
 				Main::getIntake().SetWheelBackward();
 			}
 
-			Main::getIntake().SetInternalForward();
+			Main::getIntake().SetInternalForward(1.0);
 
 			if (Main::getOpticalSensors().GetSensorBack() == 0)
 			{

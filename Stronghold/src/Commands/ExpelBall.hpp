@@ -17,18 +17,18 @@ class ExpelBall: public Command
 
 		virtual void Initialize()
 		{
-			Main::getIntake().Enable();
+			//Main::getIntake().Enable();
 			m_finished = false;
-			Main::getIntake().SetSetpoint(.28); //hack--need to change to a constant
+			//Main::getIntake().SetSetpoint(0.85); // was 0.6, should be DefaultPosition::kDegrees
 		}
 
 		virtual void Execute()
 		{
-			Main::getIntake().SetWheelForward();
-			Main::getIntake().SetInternalBackward();
+			//Main::getIntake().SetWheelForward();
+			Main::getIntake().SetInternalBackward(1.0);
 
-			Wait(3.5);
-			m_finished = true;
+
+			m_finished = Main::getOpticalSensors().GetSensorBack();
 		}
 
 
