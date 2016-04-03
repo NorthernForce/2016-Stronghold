@@ -190,6 +190,18 @@ float ArcadeDrive::GetLeftDistance()
 	return m_encLeft.GetDistance();
 }
 
+double ArcadeDrive::GetYVel()
+{
+	double vel = kWheelRadius*(m_frontLeft.GetSpeed() + m_frontRight.GetSpeed()) / 2;
+	return vel;
+}
+
+double ArcadeDrive::GetXVel()
+{
+	double vel = kWheelRadius*(abs(m_frontLeft.GetSpeed() - m_frontRight.GetSpeed())) / 2;
+	return vel;
+}
+
 void ArcadeDrive::ResetRight()
 {
 	m_encRight.Reset();

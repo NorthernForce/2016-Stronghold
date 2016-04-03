@@ -10,7 +10,9 @@
 #include "Commands/StraightAuto.h"
 #include "Subsystems/OpticalSensors.h"
 #include "Subsystems/GyroSensor.h"
+#include "Subsystems/UltrasonicSensor.h"
 #include "Subsystems/Flashlight.h"
+#include "Lib/ReadCommandFile.hpp"
 
 class Main : public IterativeRobot
 {
@@ -26,12 +28,13 @@ class Main : public IterativeRobot
 		static OpticalSensors&		getOpticalSensors();
 		static GyroSensor&			getGyroSensor();
 	    static Flashlight&			getFlashlight();
+	    static UltrasonicSensor&    getUltrasonicSensor();
 
 
 	private:
 		LiveWindow 		   *lw;
-		Command*           autocmd;
-		SendableChooser    *m_chooser;
+		CommandGroup*      autocmd;
+		//SendableChooser    *m_chooser;
 		OI				   m_oi;
 		ArcadeDrive		   m_drive;
 		Intake			   m_intake;
@@ -39,6 +42,8 @@ class Main : public IterativeRobot
 		OpticalSensors     m_optical;
 		GyroSensor		   m_gyro;
 		Flashlight  	   m_flashlight;
+		UltrasonicSensor   m_ultrasonic;
+		std::shared_ptr<CommandGroup> m_local;
 
 		virtual void RobotInit();
 		virtual void AutonomousInit();

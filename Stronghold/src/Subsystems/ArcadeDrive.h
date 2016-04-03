@@ -33,6 +33,8 @@ class ArcadeDrive: public SubsystemWithCommand<DriveWithJoystick>
 		void FlipDrive(bool flip);
 		float GetRightDistance();
 		float GetLeftDistance();
+		double GetYVel();
+		double GetXVel();
 		void ResetRight();
 		void ResetLeft();
 		void PutEncoderValues();

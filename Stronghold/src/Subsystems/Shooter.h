@@ -5,16 +5,16 @@
 #include "RobotMap.h"
 
 
-class Shooter: public Subsystem//PIDSubsystem
+class Shooter: public Subsystem
 {
 	private:
 		CANTalon 	m_shooterTalon;
 		Encoder 	m_shooterEnc;
-/*
-	protected:
-		double ReturnPIDInput();
-		void UsePIDOutput(double output);
-*/
+
+	//protected:
+		//double ReturnPIDInput();
+		//void UsePIDOutput(double output);
+
 	public:
 		Shooter();
 		void Forward();

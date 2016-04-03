@@ -4,22 +4,36 @@
 #include "../Main.h"
 
 
+template<typename T>
 class IntakeBall: public Command
 {
 	public:
 		IntakeBall() :
 			m_finished(false),
-			m_axleMove(true)
+			m_axleMove(true),
+			m_point(0.0)
 		{
 			Requires(&Main::getIntake());
 			Requires(&Main::getOpticalSensors());
+
+			float m_point = Main::getOI().GetManipulatorStick().GetZ() + T::kValue;
+			if (m_point > 1)
+			{
+				--m_point;
+			}
+
+			if (m_point < 0)
+			{
+				++m_point;
+			}
 		}
 
 		virtual void Initialize()
 		{
+
 			Main::getIntake().Enable();
 			m_finished = false;
-			Main::getIntake().SetSetpoint(0.4); //was .7, should be DownPosition::kDegrees
+			Main::getIntake().SetSetpoint(m_point); //.4, was .7, should be DownPosition::kDegrees
 		}
 
 		virtual void Execute()
@@ -69,4 +83,5 @@ class IntakeBall: public Command
 	private:
 		bool  m_finished;
 		bool  m_axleMove;
+		float m_point;
 };

@@ -29,9 +29,9 @@ void OI::init()
 	m_ManipulatorStick.Button5.ToggleWhenPressed<SetIntakeMode<IntakeBackward> >();
 	m_ManipulatorStick.Button5.ToggleWhenPressed<SetIntakeMode<IntakeStopped> >();
 
-	m_ManipulatorStick.Button6.WhenPressed<IntakeBall> ();
+	m_ManipulatorStick.Button6.WhenPressed<IntakeBall<DownPosition> > ();
 	m_ManipulatorStick.Button3.WhenPressed<ShootBall> ();
-	m_ManipulatorStick.Trigger.WhenPressed<ExpelBall> ();
+	m_ManipulatorStick.Trigger.WhenPressed<ExpelBall<DefaultPosition> > ();
 
 	m_ManipulatorStick.Button8.WhileHeld<SetAxleMotion<AxleMoveForward>> ();
 	m_ManipulatorStick.Button8.WhenReleased<SetAxleMotion<AxleMoveStopped>> ();

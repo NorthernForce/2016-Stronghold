@@ -4,22 +4,34 @@
 #include "../Main.h"
 
 
+template<typename T>
 class ExpelBall: public Command
 {
 	public:
 		ExpelBall() :
-			m_finished(false)
+			m_finished(false),
+			m_point(0.0)
 
 		{
 			Requires(&Main::getIntake());
 			Requires(&Main::getOpticalSensors());
+			float m_point = Main::getOI().GetManipulatorStick().GetZ() + T::kValue;
+			if (m_point > 1)
+			{
+				--m_point;
+			}
+
+			if (m_point < 0)
+			{
+				++m_point;
+			}
 		}
 
 		virtual void Initialize()
 		{
-			//Main::getIntake().Enable();
+			Main::getIntake().Enable();
 			m_finished = false;
-			//Main::getIntake().SetSetpoint(0.85); // was 0.6, should be DefaultPosition::kDegrees
+			Main::getIntake().SetSetpoint(m_point); // 0.85, was 0.6, should be DefaultPosition::kDegrees
 		}
 
 		virtual void Execute()
@@ -52,4 +64,5 @@ class ExpelBall: public Command
 
 	private:
 		bool  m_finished;
+		float m_point;
 };

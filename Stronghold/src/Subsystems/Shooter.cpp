@@ -4,12 +4,12 @@ Shooter::Shooter() :
 	Subsystem("Shooter"),//PIDSubsystem("Shooter", 2.0, 0.0, 0.0),
 	m_shooterTalon(kShooterTalon),
 	m_shooterEnc(7, 1.0, 0.0)
-{}
-/*	GetPIDController()->SetContinuous(true);
-	SetAbsoluteTolerance(0.1);
-	Enable();
+{
+	//GetPIDController()->SetContinuous(true);
+	//SetAbsoluteTolerance(0.1);
+	//Enable();
 }
-
+/*
 double Shooter::ReturnPIDInput()
 {
 	return m_shooterEnc.Get();

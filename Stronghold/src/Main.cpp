@@ -2,9 +2,9 @@
 #include "Commands/AutonomousDrive.hpp"
 
 
-Main::Main() : lw(0), autocmd(), m_chooser()
+Main::Main() : lw(0), autocmd(), m_ultrasonic(1, 5, 1)//, m_chooser()
 {
-	m_chooser = new SendableChooser();
+	//m_chooser = new SendableChooser();
 }
 
 Main::~Main()
@@ -52,6 +52,11 @@ Flashlight& Main::getFlashlight()
 	return getRobot().m_flashlight;
 }
 
+UltrasonicSensor& Main::getUltrasonicSensor()
+{
+	return getRobot().m_ultrasonic;
+}
+
 void Main::RobotInit()
 {
 	m_oi.init();
@@ -61,10 +66,10 @@ void Main::RobotInit()
 	m_gyro.init();
 	m_flashlight.init();
 
-	m_chooser->AddDefault("Low Bar Start", new Auto());
-	m_chooser->AddObject("Drive Straight", new StraightAuto());
+	//m_chooser->AddDefault("Low Bar Start", new Auto());
+	//m_chooser->AddObject("Drive Straight", new StraightAuto());
 	//m_chooser->AddObject("Spy start, new Auto3());
-	SmartDashboard::PutData("Autonomous modes", m_chooser);
+//	SmartDashboard::PutData("Autonomous modes", m_chooser);
 	lw = LiveWindow::GetInstance();
 
 	CameraServer::GetInstance()->SetQuality(50);
@@ -73,8 +78,19 @@ void Main::RobotInit()
 
 void Main::AutonomousInit()
 {
-	autocmd = (Command *) m_chooser->GetSelected();
+	//autocmd = (Command *) m_chooser->GetSelected();
+
+	std::string dir = "/home/auto/";
+	std::string fileName = SmartDashboard::GetString("Autonomous File", "Autonomous.txt");
+
+	std::cout << "About to read commands" << std::endl;
+	m_local = ACommandParser::ReadCommandFromFile(dir + fileName);
+	std::cout << "Read the commands" << std::endl;
+	autocmd = m_local.get();
+	std::cout << "About to start commands" << std::endl;
 	autocmd->Start();
+	std::cout << "Started the commands" << std::endl;
+
 }
 
 void Main::AutonomousPeriodic()
@@ -97,6 +113,9 @@ void Main::TeleopPeriodic()
 	double opticalTwo = getOpticalSensors().GetSensorBack();
 	SmartDashboard::PutNumber("OpticalFront", opticalOne);
 	SmartDashboard::PutNumber("OpticalBack", opticalTwo);
+
+	double ultrasonic = getUltrasonicSensor().GetRangeInInches();
+	SmartDashboard::PutNumber("Ultrasonic", ultrasonic);
 
 	getGyroSensor().GetGyro();
 

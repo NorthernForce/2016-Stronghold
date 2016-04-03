@@ -74,26 +74,26 @@ enum JoystickPort
 
 struct DefaultPosition
 {
-	static constexpr float kDegrees = 100; //100
-	static constexpr float kValue = 0.5;//kDegrees/360;
+	static constexpr float kDegrees = 100;
+	static constexpr float kValue = kDegrees/360; //0.5
 };
 
 struct UpPosition
 {
 	static constexpr float kDegrees = 32.0; //32
-	static constexpr float kValue = 0.4; //kDegrees/360;
+	static constexpr float kValue = kDegrees/360; //0.4
 };
 
 struct DownPosition
 {
 	static constexpr float kDegrees = 220.0; //220
-	static constexpr float kValue = 0.9;//kDegrees/360;
+	static constexpr float kValue = kDegrees/360; //0.9
 };
 
 struct PortcullisPosition
 {
 	static constexpr float kDegrees = 160; //160
-	static constexpr float kValue = 0.0; //kDegrees/360;
+	static constexpr float kValue = kDegrees/360; //0.0
 };
 
 static const float	kP = 0.2;

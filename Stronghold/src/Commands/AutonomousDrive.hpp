@@ -6,6 +6,8 @@
 
 class DriveStraight{};
 class DriveTurn{};
+class VectorDriveToRobot{};
+class VectorDriveToField{};
 
 template<class Mode>
 class AutonomousDrive : public Command
@@ -16,7 +18,9 @@ public:
 		m_speed(speed),
 		m_distance(distance),
 		m_angle(angle),
-		m_initialAngle(0)
+		m_initialAngle(0),
+		m_x(0),
+		m_y(0)
 	{
 		Requires(&Main::getDrive());
 		Requires(&Main::getGyroSensor());
@@ -46,6 +50,16 @@ public:
 		Main::getDrive().DriveArcade(0.0, -m_speed, true);
 	}
 
+	void specificInit(const VectorDriveToRobot& mode)
+	{
+		Main::getDrive().DriveArcade(m_speed, -m_speed, true);
+	}
+
+	void specificInit(const VectorDriveToField& mode)
+	{
+		Main::getDrive().DriveArcade(m_speed, -m_speed, true);
+	}
+
 	void Execute() override
 	{
 		Main::getDrive().PutEncoderValues();
@@ -56,6 +70,12 @@ public:
 
 	void specificExecute(const DriveStraight& mode)
 	{
+		if (Main::getDrive().GetLeftDistance() < m_distance) // Right encoder is currently giving strange values
+		{
+			float angle = Main::getGyroSensor().GetAngle();
+			Main::getDrive().DriveArcade(m_speed, -(m_initialAngle - angle) * 0.05, true);
+			Wait(0.01);
+		}
 		if (Main::getDrive().GetLeftDistance() > m_distance) // Right encoder is currently giving strange values
 		{
 			Main::getDrive().DriveArcade(0.0, 0.0, true);
@@ -70,6 +90,16 @@ public:
 		}
 	}
 
+	void specificExecute(const VectorDriveToRobot& mode)
+	{
+		m_x = m_x + cos(m_initialAngle - Main::getGyroSensor().GetAngle()) * Main::getDrive().GetYVel(); // times velocity
+		m_y = m_y + sin(m_initialAngle - Main::getGyroSensor().GetAngle()) * Main::getDrive().GetXVel();
+	}
+
+	void specificExecute(const VectorDriveToField& mode)
+	{
+
+	}
 
 	bool IsFinished() override
 	{
@@ -91,7 +121,9 @@ private:
 	const float m_speed;
 	const float m_distance;
 	const float m_angle;
-	float m_initialAngle;
+	float m_initialAngle; // first reading, reference
+	double m_x;
+	double m_y;
 
 	Timer m_timer;
 };
