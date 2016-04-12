@@ -8,7 +8,7 @@
 
 StraightAuto::StraightAuto()
 {
-	AddSequential(new AutonomousDrive<DriveStraight>(5, 0.8, 4300, 0)); //third arge was 4700
+	AddSequential(new AutonomousDrive<DriveStraight>(5, 1.0, 4300, 0)); //third arge was 4700
 }
 
 

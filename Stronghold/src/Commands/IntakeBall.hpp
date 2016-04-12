@@ -16,7 +16,8 @@ class IntakeBall: public Command
 			Requires(&Main::getIntake());
 			Requires(&Main::getOpticalSensors());
 
-			float m_point = Main::getOI().GetManipulatorStick().GetZ() + T::kValue;
+			 //Main::getOI().GetManipulatorStick().GetZ() +
+			/*
 			if (m_point > 1)
 			{
 				--m_point;
@@ -26,12 +27,13 @@ class IntakeBall: public Command
 			{
 				++m_point;
 			}
+			*/
 		}
 
 		virtual void Initialize()
 		{
-
 			Main::getIntake().Enable();
+			float m_point = T::kValue;
 			m_finished = false;
 			Main::getIntake().SetSetpoint(m_point); //.4, was .7, should be DownPosition::kDegrees
 		}
@@ -70,7 +72,7 @@ class IntakeBall: public Command
 		{
 			Main::getIntake().SetWheelStopped();
 			Main::getIntake().SetInternalStopped();
-			Main::getIntake().Disable();
+			//Main::getIntake().Disable();
 		}
 
 		virtual void Interrupted()

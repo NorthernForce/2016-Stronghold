@@ -2,11 +2,11 @@
 #include "Commands/AutoAdjust.hpp"
 
 Intake::Intake() :
-	PIDSubsystem("Intake", 2.0, 0.1, 0.0),
+	PIDSubsystem("Intake", 5.0, 1.0, 0.0),
 	m_axleTalon(kAxleTalon),
 	m_wheelTalon(kWheelTalon),
 	m_internalTalon(kInternalTalon),
-	m_axleEnc(kChannelA, 1.0, 0.0)
+	m_axleEnc(2, 1.0, 0.0) //first arg was kChannelA
 //	m_pidLoop(kP, kI, kD, &m_axleEnc, &m_axleTalon)
 	//m_degrees(0.0)
 {
@@ -120,6 +120,8 @@ void Intake::init()
 	m_wheelTalon.Set(0.0, 0);
 	m_axleTalon.Set(0.0, 0);
 	m_internalTalon.Set(0.0, 0);
+
+	m_initialEnc = GetPosition();
 
 
 	//m_wheelTalon.SetSpeed(0.0);

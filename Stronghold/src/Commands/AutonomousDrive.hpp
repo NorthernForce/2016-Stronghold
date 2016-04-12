@@ -24,12 +24,16 @@ public:
 	{
 		Requires(&Main::getDrive());
 		Requires(&Main::getGyroSensor());
+		Requires(&Main::getIntake());
 	}
 
 	void Initialize() override
 	{
 		m_timer.Reset();
 		m_timer.Start();
+
+		Main::getIntake().Disable();
+
 		Main::getGyroSensor().Zero();
 		Main::getDrive().ResetRight();
 		Main::getDrive().ResetLeft();

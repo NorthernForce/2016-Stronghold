@@ -33,8 +33,8 @@ class Main : public IterativeRobot
 
 	private:
 		LiveWindow 		   *lw;
-		CommandGroup*      autocmd;
-		//SendableChooser    *m_chooser;
+		Command*		   autocmd;//CommandGroup*      autocmd;
+		SendableChooser    *m_chooser;
 		OI				   m_oi;
 		ArcadeDrive		   m_drive;
 		Intake			   m_intake;

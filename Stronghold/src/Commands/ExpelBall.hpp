@@ -15,8 +15,9 @@ class ExpelBall: public Command
 		{
 			Requires(&Main::getIntake());
 			Requires(&Main::getOpticalSensors());
-			float m_point = Main::getOI().GetManipulatorStick().GetZ() + T::kValue;
-			if (m_point > 1)
+			 //Main::getOI().GetManipulatorStick().GetZ() +
+			/*
+			 if (m_point > 1)
 			{
 				--m_point;
 			}
@@ -25,11 +26,13 @@ class ExpelBall: public Command
 			{
 				++m_point;
 			}
+			*/
 		}
 
 		virtual void Initialize()
 		{
 			Main::getIntake().Enable();
+			float m_point = T::kValue;
 			m_finished = false;
 			Main::getIntake().SetSetpoint(m_point); // 0.85, was 0.6, should be DefaultPosition::kDegrees
 		}
@@ -38,9 +41,11 @@ class ExpelBall: public Command
 		{
 			//Main::getIntake().SetWheelForward();
 			Main::getIntake().SetInternalBackward(1.0);
+			Main::getIntake().SetWheelForward();
 
+			Wait(2.0);
 
-			m_finished = Main::getOpticalSensors().GetSensorBack();
+			m_finished = Main::getOpticalSensors().GetSensorFront();
 		}
 
 

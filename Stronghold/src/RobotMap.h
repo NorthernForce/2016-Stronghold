@@ -72,28 +72,33 @@ enum JoystickPort
 	kXBoxManipulatorPort = 2,
 };
 
-struct DefaultPosition
+struct DefaultPosition //intake
 {
-	static constexpr float kDegrees = 100;
+	static constexpr float kDegrees = 290; //100
 	static constexpr float kValue = kDegrees/360; //0.5
 };
 
-struct UpPosition
+struct DownPosition //up
 {
-	static constexpr float kDegrees = 32.0; //32
+	static constexpr float kDegrees = 50.0; //32
 	static constexpr float kValue = kDegrees/360; //0.4
 };
 
-struct DownPosition
+struct UpPosition //down
 {
-	static constexpr float kDegrees = 220.0; //220
+	static constexpr float kDegrees = 200.0; //220
 	static constexpr float kValue = kDegrees/360; //0.9
 };
 
-struct PortcullisPosition
+struct OnTopPosition //on top
 {
 	static constexpr float kDegrees = 160; //160
 	static constexpr float kValue = kDegrees/360; //0.0
+};
+
+struct EndPosition
+{
+	static constexpr float kValue = 0.544;
 };
 
 static const float	kP = 0.2;

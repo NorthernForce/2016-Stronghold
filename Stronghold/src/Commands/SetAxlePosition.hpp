@@ -13,6 +13,10 @@ class SetAxlePosition: public Command
 			m_point(0.0)
 		{
 			Requires(&Main::getIntake());
+		}
+		virtual void Initialize()
+		{
+			/*
 			float m_point = Main::getOI().GetManipulatorStick().GetZ() + T::kValue;
 			if (m_point > 1)
 			{
@@ -23,9 +27,9 @@ class SetAxlePosition: public Command
 			{
 				++m_point;
 			}
-		}
-		virtual void Initialize()
-		{
+			*/
+
+			m_point = T::kValue;
 			Main::getIntake().Enable();
 			Main::getIntake().SetSetpoint(m_point);
 			m_finished = false;

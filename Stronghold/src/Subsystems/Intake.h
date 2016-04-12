@@ -14,6 +14,7 @@ class Intake: public PIDSubsystem
 		Talon     				m_internalTalon;
 		AnalogPotentiometer     m_axleEnc;
 
+
 	protected:
 		double ReturnPIDInput();
 		void UsePIDOutput(double output);
@@ -33,5 +34,6 @@ class Intake: public PIDSubsystem
 		void SetInternalBackward(float set);
 		void SetInternalStopped();
 		void init();
+		double			m_initialEnc;
 
 };
