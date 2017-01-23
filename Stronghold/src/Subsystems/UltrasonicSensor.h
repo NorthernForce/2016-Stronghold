@@ -10,6 +10,9 @@ class UltrasonicSensor: public SubsystemWithCommand<void>
 	public:
 
 		UltrasonicSensor(int analogChannel, int serialChannel, int onChannel);
+////       analogChannel = 1, serialChannel = 5, onChannel = 1
+
+
 
 		double GetRangeInInches() const;
 

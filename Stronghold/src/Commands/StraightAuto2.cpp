@@ -1,4 +1,4 @@
-#include "StraightAuto.h"
+#include "StraightAuto2.h"
 #include "Main.h"
 #include "AutonomousDrive.hpp"
 #include "ShootBall.hpp"
@@ -6,9 +6,9 @@
 
 
 
-StraightAuto::StraightAuto()
+StraightAuto2::StraightAuto2()
 {
-	AddSequential(new AutonomousDrive<DriveStraight>(2, 1.0, 5800, 0)); //third arge was 4700
+	AddSequential(new AutonomousDrive<DriveStraight>(2, 1.0, 6300, 0)); //third arge was 4700
 }
 
 

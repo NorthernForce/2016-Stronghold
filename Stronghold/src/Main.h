@@ -8,6 +8,7 @@
 #include "Subsystems/Shooter.h"
 #include "Commands/Auto.h"
 #include "Commands/StraightAuto.h"
+#include "Commands/StraightAuto2.h"
 #include "Subsystems/OpticalSensors.h"
 #include "Subsystems/GyroSensor.h"
 #include "Subsystems/UltrasonicSensor.h"

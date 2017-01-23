@@ -3,6 +3,9 @@
 #include "Subsystems/SubsystemWithCommand.hpp"
 #include "Commands/DriveWithJoystick.h"
 #include "WPILib.h"
+#include "C:\users\jcrosby\wpilib\user\cpp\include\CANTalon.h"
+
+
 
 
 class ArcadeDrive: public SubsystemWithCommand<DriveWithJoystick>

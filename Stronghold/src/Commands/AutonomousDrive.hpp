@@ -5,9 +5,11 @@
 #include "../RobotMap.h"
 
 class DriveStraight{};
+class DriveStraight2{};
 class DriveTurn{};
 class VectorDriveToRobot{};
 class VectorDriveToField{};
+class RangeDrive{};
 
 template<class Mode>
 class AutonomousDrive : public Command
@@ -23,7 +25,7 @@ public:
 		m_y(0)
 	{
 		Requires(&Main::getDrive());
-		Requires(&Main::getGyroSensor());
+		//Requires(&Main::getGyroSensor());
 		Requires(&Main::getIntake());
 	}
 
@@ -49,6 +51,11 @@ public:
 		Main::getDrive().DriveArcade(m_speed, 0.0, true);
 	}
 
+	void specificInit(const DriveStraight2& mode)
+	{
+		Main::getDrive().DriveArcade(m_speed, 0.0, true);
+	}
+
 	void specificInit(const DriveTurn& mode)
 	{
 		Main::getDrive().DriveArcade(0.0, -m_speed, true);
@@ -64,15 +71,34 @@ public:
 		Main::getDrive().DriveArcade(m_speed, -m_speed, true);
 	}
 
+	void specificInit(const RangeDrive& mode)
+	{
+		Main::getDrive().DriveArcade(m_speed, 0.0, true);
+	}
+
 	void Execute() override
 	{
 		Main::getDrive().PutEncoderValues();
 
 		specificExecute(Mode());
-
 	}
 
 	void specificExecute(const DriveStraight& mode)
+	{
+		if (Main::getDrive().GetLeftDistance() < m_distance) // Right encoder is currently giving strange values
+		{
+			float angle = Main::getGyroSensor().GetAngle();
+			Main::getDrive().DriveArcade(m_speed, -(m_initialAngle - angle) * 0.05, true);
+			Wait(0.01);
+		}
+		if (Main::getDrive().GetLeftDistance() > m_distance) // Right encoder is currently giving strange values
+		{
+			Main::getDrive().DriveArcade(0.0, 0.0, true);
+		}
+	}
+
+
+	void specificExecute(const DriveStraight2& mode)
 	{
 		if (Main::getDrive().GetLeftDistance() < m_distance) // Right encoder is currently giving strange values
 		{
@@ -104,6 +130,35 @@ public:
 	{
 
 	}
+
+
+	void specificExecute(const RangeDrive& mode)
+	{
+		double d = Main::getUltrasonicSensor().GetRangeInInches();
+		float dist = float(d);
+
+		SmartDashboard::PutNumber("Ultrasonic", d);
+
+		SmartDashboard::PutNumber("Dist", dist);
+
+
+//		if (dist < m_distance)
+		{
+//			float angle = Main::getGyroSensor().GetAngle();
+//			Main::getDrive().DriveArcade(m_speed, -(m_initialAngle - angle) * 0.05, true);
+			Main::getDrive().DriveArcade(0.6, 0.0, true);
+			Wait(0.01);
+		}
+
+		if (dist >= m_distance)
+		{
+			Main::getDrive().DriveArcade(0.0, 0.0, true);
+		}
+
+	}
+
+
+
 
 	bool IsFinished() override
 	{

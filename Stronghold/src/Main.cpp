@@ -66,7 +66,8 @@ void Main::RobotInit()
 	m_gyro.init();
 	m_flashlight.init();
 
-	m_chooser->AddDefault("Drive Straight", new StraightAuto()); // shoots
+	m_chooser->AddDefault("Drive Straight", new StraightAuto());
+	m_chooser->AddObject("Drive Straight 2", new StraightAuto2());
 	m_chooser->AddObject("Low Bar Start", new Auto());
 //	m_chooser->AddObject("Spy start, new Auto3());
 	SmartDashboard::PutData("Autonomous modes", m_chooser);
@@ -122,6 +123,8 @@ void Main::TeleopPeriodic()
 	m_drive.PutEncoderValues();
 
 	double intakeNumber = getIntake().GetPosition();
+
+	//getIntake().SetInternalBackward(0.5);
 
 	SmartDashboard::PutNumber("Intake Encoder", intakeNumber);
 }

@@ -47,7 +47,7 @@ double Shooter::GetCurrent()
 
 bool Shooter::IsShooterReady()
 {
-	if (GetCurrent() > 4.1)
+	if ((GetCurrent() > 4.1) && (GetVoltage() > 8))
 	{
 		return true;
 	}

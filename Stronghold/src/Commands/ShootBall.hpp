@@ -24,14 +24,15 @@ class ShootBall: public Command
 		virtual void Execute()
 		{
 			Main::getIntake().SetInternalForward(1.0);
-			Wait(4.0);
-			m_finished = true;
+			//Wait(4.0);
+	    	m_finished = true;
 		}
 
 
 		virtual bool IsFinished() { return m_finished; }
 		virtual void End()
 		{
+			Wait(1.0);
 			Main::getShooter().Stopped();
 			Main::getIntake().SetInternalStopped();
 		}

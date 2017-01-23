@@ -43,7 +43,7 @@ class ExpelBall: public Command
 			Main::getIntake().SetInternalBackward(1.0);
 			Main::getIntake().SetWheelForward();
 
-			Wait(2.0);
+//Removed per Driver Request JJC 4/29/2016		Wait(2.0);
 
 			m_finished = Main::getOpticalSensors().GetSensorFront();
 		}
